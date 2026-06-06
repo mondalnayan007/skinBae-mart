@@ -1,0 +1,583 @@
+[
+  {
+    "id": "1",
+    "title": "Dot & Key Vitamin C + E Sunscreen SPF 50+ PA++++",
+    "brand": "Dot & Key",
+    "size": "80gm",
+    "sku": "31954",
+    "category": "Skin",
+    "status": "Bestselling products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 9,
+      "message": "Only 9 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 999.00,
+      "originalPrice": 1800.00,
+      "savings": 801.00,
+      "discountPercentage": 45
+    },
+    "briefDescription": [
+      "Reduces dullness & tan.",
+      "Water-light fluid texture.",
+      "Blocks UVA, UVB & Blue Light rays.",
+      "Fades dark spots.",
+      "Does not sting eyes."
+    ],
+    "tags": ["Skin", "Sunscreen", "Sun Protection", "Tan Removal", "Dot & Key"],
+    "images": "https://bk.shajgoj.com/storage/2024/06/Dot-Key-Vitamin-C-E-Sunscreen-SPF-50-PA8.png"
+  },
+  {
+    "id": "2",
+    "title": "COSRX Advanced Snail 96 Mucin Power Essence",
+    "brand": "COSRX",
+    "size": "100ml",
+    "sku": "42109",
+    "category": "Skin",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 15,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1650.00,
+      "originalPrice": 2200.00,
+      "savings": 550.00,
+      "discountPercentage": 25
+    },
+    "briefDescription": [
+      "Lightweight essence which absorbs into skin fast.",
+      "Gives skin a natural glow from the inside.",
+      "Soothes damaged skin and improves elasticity.",
+      "Provides long-lasting hydration without heaviness."
+    ],
+    "tags": ["Skin", "Essence", "Snail Mucin", "Hydration", "K-Beauty"],
+    "images": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "3",
+    "title": "CeraVe Foaming Cleanser for Normal to Oily Skin",
+    "brand": "CeraVe",
+    "size": "236ml",
+    "sku": "11054",
+    "category": "Skin",
+    "status": "Bestselling products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 5,
+      "message": "Only 5 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1450.00,
+      "originalPrice": 1850.00,
+      "savings": 400.00,
+      "discountPercentage": 22
+    },
+    "briefDescription": [
+      "Cleanses and removes oil without disrupting the protective skin barrier.",
+      "Contains 3 essential ceramides, niacinamide, and hyaluronic acid.",
+      "Gentle foaming action refreshes skin.",
+      "Fragrance-free and non-comedogenic."
+    ],
+    "tags": ["Skin", "Cleanser", "Oily Skin", "Ceramides", "Daily Care"],
+    "images": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "4",
+    "title": "The Ordinary Niacinamide 10% + Zinc 1%",
+    "brand": "The Ordinary",
+    "size": "30ml",
+    "sku": "22091",
+    "category": "Skin",
+    "status": "Bestselling products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 22,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 950.00,
+      "originalPrice": 1200.00,
+      "savings": 250.00,
+      "discountPercentage": 21
+    },
+    "briefDescription": [
+      "High-strength vitamin and mineral blemish formula.",
+      "Reduces the appearance of skin blemishes and congestion.",
+      "Regulates excess sebum production.",
+      "Brightens skin tone significantly."
+    ],
+    "tags": ["Skin", "Serum", "Niacinamide", "Acne Control", "Brightening"],
+    "images": "https://images.unsplash.com/photo-1608248597481-496100c8c836?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "5",
+    "title": "Maybelline Fit Me Matte + Poreless Liquid Foundation",
+    "brand": "Maybelline",
+    "size": "30ml",
+    "sku": "55410",
+    "category": "Makeup",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 12,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 850.00,
+      "originalPrice": 1100.00,
+      "savings": 250.00,
+      "discountPercentage": 23
+    },
+    "briefDescription": [
+      "Ideal for normal to oily skin.",
+      "Exclusive matte formula features micro-powders to control shine.",
+      "Blurs pores for a natural, seamless finish.",
+      "Stays up to 12 hours comfortably."
+    ],
+    "tags": ["Makeup", "Foundation", "Matte", "Face Makeup", "Maybelline"],
+    "images": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "6",
+    "title": "L'Oreal Paris Extraordinary Oil Hair Serum",
+    "brand": "L'Oreal",
+    "size": "100ml",
+    "sku": "66120",
+    "category": "Hair",
+    "status": "New Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 8,
+      "message": "Only 8 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1250.00,
+      "originalPrice": 1600.00,
+      "savings": 350.00,
+      "discountPercentage": 22
+    },
+    "briefDescription": [
+      "Transform dry, lifeless hair into soft and lustrous locks.",
+      "Infused with 6 rare flower oils.",
+      "Provides lightweight finish without weighing hair down.",
+      "Protects hair from heat styling damage."
+    ],
+    "tags": ["Hair", "Serum", "Hair Care", "Frizz Control", "Shine"],
+    "images": "https://images.unsplash.com/photo-1526413232644-8a40f03cc0c6?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "7",
+    "title": "Cetaphil Gentle Skin Cleanser for All Skin Types",
+    "brand": "Cetaphil",
+    "size": "250ml",
+    "sku": "11402",
+    "category": "Skin",
+    "status": "Bestselling products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 30,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1150.00,
+      "originalPrice": 1400.00,
+      "savings": 250.00,
+      "discountPercentage": 18
+    },
+    "briefDescription": [
+      "Clinically proven to hydrate while cleansing.",
+      "Removes dirt, makeup, and impurities gently.",
+      "Ideal for sensitive and dry skin types.",
+      "Defends against 5 signs of skin sensitivity."
+    ],
+    "tags": ["Skin", "Cleanser", "Sensitive Skin", "Gentle Wash", "Cetaphil"],
+    "images": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "8",
+    "title": "Some By Mi AHA BHA PHA 30 Days Miracle Toner",
+    "brand": "Some By Mi",
+    "size": "150ml",
+    "sku": "22841",
+    "category": "Skin",
+    "status": "New Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 11,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1390.00,
+      "originalPrice": 1950.00,
+      "savings": 560.00,
+      "discountPercentage": 29
+    },
+    "briefDescription": [
+      "Exfoliates skin gently with AHA, BHA, and PHA.",
+      "Contains 10,000ppm of natural teatree extract.",
+      "Soothing for acne-prone and troubled skin.",
+      "Improves skin tone and texture within 30 days."
+    ],
+    "tags": ["Skin", "Toner", "Acne", "Exfoliation", "Miracle Toner"],
+    "images": "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "9",
+    "title": "Mielle Organics Rosemary Mint Scalp & Hair Oil",
+    "brand": "Mielle",
+    "size": "59ml",
+    "sku": "77014",
+    "category": "Hair",
+    "status": "Bestselling products",
+    "availability": {
+      "inStock": false,
+      "stockCount": 0,
+      "message": "Out of Stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1400.00,
+      "originalPrice": 1850.00,
+      "savings": 450.00,
+      "discountPercentage": 24
+    },
+    "briefDescription": [
+      "Infused with biotin to encourage longer, healthier hair.",
+      "Nourishes hair follicles and smooths split ends.",
+      "Soothes dry and irritated scalp.",
+      "Great for protective styles and everyday care."
+    ],
+    "tags": ["Hair", "Hair Oil", "Scalp Treatment", "Biotin", "Hair Growth"],
+    "images": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "10",
+    "title": "Neutrogena Hydro Boost Water Gel Moisturizer",
+    "brand": "Neutrogena",
+    "size": "50g",
+    "sku": "12390",
+    "category": "Skin",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 14,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1290.00,
+      "originalPrice": 1750.00,
+      "savings": 460.00,
+      "discountPercentage": 26
+    },
+    "briefDescription": [
+      "Instantly quenches dry skin for a healthy glow.",
+      "Formulated with Hyaluronic Acid to lock in moisture.",
+      "Oil-free, lightweight gel formula absorbs quickly.",
+      "Provides up to 48 hours of intense hydration."
+    ],
+    "tags": ["Skin", "Moisturizer", "Gel Cream", "Hyaluronic Acid", "Dehydrated Skin"],
+    "images": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "11",
+    "title": "Innisfree Green Tea Seed Hyaluronic Serum",
+    "brand": "Innisfree",
+    "size": "80ml",
+    "sku": "43122",
+    "category": "Skin",
+    "status": "New Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 7,
+      "message": "Only 7 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 2150.00,
+      "originalPrice": 2800.00,
+      "savings": 650.00,
+      "discountPercentage": 23
+    },
+    "briefDescription": [
+      "Intensive moisturizing serum containing organic Jeju green tea seed water.",
+      "Creates a strong moisture barrier to prevent dryness.",
+      "Formulated with nano-capsuled hyaluronic acid.",
+      "Leaves skin feeling supple and deeply refreshed."
+    ],
+    "tags": ["Skin", "Serum", "Green Tea", "Moisture Barrier", "Jeju Island"],
+    "images": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "12",
+    "title": "Nivea Cocoa Butter Body Cream",
+    "brand": "Nivea",
+    "size": "400ml",
+    "sku": "88056",
+    "category": "Personal care",
+    "status": "Bestselling products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 45,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 750.00,
+      "originalPrice": 950.00,
+      "savings": 200.00,
+      "discountPercentage": 21
+    },
+    "briefDescription": [
+      "Enriched with Cocoa Butter and Vitamin E.",
+      "Provides deep, long-lasting moisture for 48 hours.",
+      "Smooths away dullness and dry skin flakes.",
+      "Rich, creamy texture that absorbs rapidly."
+    ],
+    "tags": ["Personal care", "Body Cream", "Cocoa Butter", "Dry Skin", "Nivea"],
+    "images": "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "13",
+    "title": "Vaseline Lip Therapy Rosy Lips",
+    "brand": "Vaseline",
+    "size": "7g",
+    "sku": "99021",
+    "category": "Personal care",
+    "status": "Bestselling products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 100,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 250.00,
+      "originalPrice": 350.00,
+      "savings": 100.00,
+      "discountPercentage": 29
+    },
+    "briefDescription": [
+      "Helps lock in moisture for beautiful, healthy lips.",
+      "Gives lips a natural, glossy pink tint.",
+      "Made with pure Vaseline Petroleum Jelly.",
+      "Soothes and softens dry, chapped lips instantly."
+    ],
+    "tags": ["Personal care", "Lip Balm", "Rosy Lips", "Lip Care", "Vaseline"],
+    "images": "https://images.unsplash.com/photo-1599849594747-101a6256d41d?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "14",
+    "title": "Tresemme Keratin Smooth Shampoo",
+    "brand": "Tresemme",
+    "size": "580ml",
+    "sku": "66781",
+    "category": "Hair",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 16,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 820.00,
+      "originalPrice": 1100.00,
+      "savings": 280.00,
+      "discountPercentage": 25
+    },
+    "briefDescription": [
+      "Formulated with Keratin and Argan oil.",
+      "Controls frizz up to 72 hours.",
+      "Detangles knots, boosts shine, and adds softness.",
+      "Perfect for chemically treated or frizzy hair."
+    ],
+    "tags": ["Hair", "Shampoo", "Keratin Smooth", "Frizz Free", "Hair Cleanse"],
+    "images": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "15",
+    "title": "The Body Shop Tea Tree Skin Clearing Facial Wash",
+    "brand": "The Body Shop",
+    "size": "250ml",
+    "sku": "33061",
+    "category": "Skin",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 4,
+      "message": "Only 4 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1350.00,
+      "originalPrice": 1650.00,
+      "savings": 300.00,
+      "discountPercentage": 18
+    },
+    "briefDescription": [
+      "Gel-based cleanser suitable for blemished skin.",
+      "Infused with Community Fair Trade tea tree oil.",
+      "Deeply cleanses and removes excess oil without over-drying.",
+      "Leaves skin feeling fresh and look clearer."
+    ],
+    "tags": ["Skin", "Facial Wash", "Tea Tree", "Blemish Control", "The Body Shop"],
+    "images": "https://images.unsplash.com/photo-1556228578-8c5c99d4e553?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "16",
+    "title": "Beauty of Joseon Relief Sun : Rice + Probiotics",
+    "brand": "Beauty of Joseon",
+    "size": "50ml",
+    "sku": "44012",
+    "category": "Skin",
+    "status": "New Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 25,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1450.00,
+      "originalPrice": 1950.00,
+      "savings": 500.00,
+      "discountPercentage": 26
+    },
+    "briefDescription": [
+      "Lightweight organic sunscreen that feels comfortable on skin.",
+      "Contains 30% rice extract and grain fermented extracts.",
+      "Provides rich hydration and nourishment to skin.",
+      "Leaves no white cast or sticky texture."
+    ],
+    "tags": ["Skin", "Sunscreen", "Organic SPF", "Rice Extract", "Korean Skin"],
+    "images": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "17",
+    "title": "Anua Heartleaf 77% Soothing Toner",
+    "brand": "Anua",
+    "size": "250ml",
+    "sku": "22301",
+    "category": "Skin",
+    "status": "New Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 18,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1980.00,
+      "originalPrice": 2600.00,
+      "savings": 620.00,
+      "discountPercentage": 24
+    },
+    "briefDescription": [
+      "Infused with 77% Heartleaf extract to soothe irritated skin.",
+      "Helps regulate sebum and moisture levels.",
+      "Non-comedogenic toner perfect for acne-prone skins.",
+      "Reduces skin redness and balances pH level."
+    ],
+    "tags": ["Skin", "Toner", "Heartleaf", "Calming", "K-Beauty Trends"],
+    "images": "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "18",
+    "title": "La Roche-Posay Effaclar Duo+ Acne Treatment",
+    "brand": "La Roche-Posay",
+    "size": "40ml",
+    "sku": "51240",
+    "category": "Skin",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 6,
+      "message": "Only 6 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 2200.00,
+      "originalPrice": 2750.00,
+      "savings": 550.00,
+      "discountPercentage": 20
+    },
+    "briefDescription": [
+      "Dual-action acne treatment that targets blemishes and blackheads.",
+      "Formulated with Niacinamide, LHA, and Procerad.",
+      "Helps clear acne spots and prevents red marks.",
+      "Mattifies skin and provides all-day hydration."
+    ],
+    "tags": ["Skin", "Acne Treatment", "Dermatologist Tested", "Effaclar"],
+    "images": "https://images.unsplash.com/photo-1608248597481-496100c8c836?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "19",
+    "title": "Axe Dark Temptation Body Spray",
+    "brand": "Axe",
+    "size": "150ml",
+    "sku": "88910",
+    "category": "Personal care",
+    "status": "Bestselling products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 50,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 480.00,
+      "originalPrice": 650.00,
+      "savings": 170.00,
+      "discountPercentage": 26
+    },
+    "briefDescription": [
+      "Subtle, sweet fragrance with a hint of spice.",
+      "Blend of hot chocolate, amber, and red peppercorn.",
+      "Keeps you fresh and odor-free all day long.",
+      "Easy-to-use twist cap spray mechanism."
+    ],
+    "tags": ["Personal care", "Deodorant", "Body Spray", "Men Fragrance", "Axe"],
+    "images": "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    "id": "20",
+    "title": "Ogx Thick & Full Biotin & Collagen Shampoo",
+    "brand": "OGX",
+    "size": "385ml",
+    "sku": "66102",
+    "category": "Hair",
+    "status": "New Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 13,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1150.00,
+      "originalPrice": 1500.00,
+      "savings": 350.00,
+      "discountPercentage": 23
+    },
+    "briefDescription": [
+      "High performance blend of powerful Biotin and Collagen.",
+      "Helps volumize even the skinniest hair strands.",
+      "Creates a thicker, fuller, and healthier hair look.",
+      "Sulfate-free surfactants hair care system."
+    ],
+    "tags": ["Hair", "Shampoo", "Biotin", "Collagen", "Volumizing Shampoo"],
+    "images": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&q=80&w=400"
+  }
+]
