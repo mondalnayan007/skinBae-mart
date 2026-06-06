@@ -26,7 +26,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="fixed top-0 left-0 w-full bg-white border-b border-gray-100 z-50">
+        <nav className="sticky top-0 left-0 w-full bg-white border-b border-gray-100 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between gap-4">
 
                 {/* Left Side: Hamburger (Mobile Only) & Logo */}
@@ -58,15 +58,12 @@ const Navbar = () => {
                 </div>
 
                 {/* Central Search Bar - Only Visible on Desktop (>= md) to match your image */}
-                <div className="hidden md:flex flex-1 max-w-2xl items-center bg-[#F5F5F5] rounded-md pl-4 pr-1.5 py-1.5 mx-4">
-                    <div className="flex items-center gap-1 cursor-pointer select-none pr-3 border-r border-gray-300">
-                        <span className="text-sm font-medium text-gray-800 whitespace-nowrap">All Categories</span>
-                        <ChevronDown className="w-4 h-4 text-gray-500" />
-                    </div>
+                <div className="hidden md:flex flex-1 max-w-2xl focus:outline items-center bg-[#F5F5F5] rounded-md pl-4 pr-1.5 py-1.5 mx-4">
+                   
                     <input
                         type="text"
                         placeholder="I am looking for..."
-                        className="w-full bg-transparent px-4 text-sm text-gray-700 placeholder-gray-400 focus:outline-none"
+                        className="w-full bg-transparent px-4 text-sm text-gray-700 placeholder-gray-400   "
                     />
                     <button className="bg-black hover:bg-gray-800 transition-colors p-2.5 rounded-md flex items-center justify-center text-white">
                         <Search className="w-4 h-4" />
@@ -171,7 +168,10 @@ const Navbar = () => {
                     }}
                 />
             )}
+
+            
         </nav>
+        
     );
 };
 
