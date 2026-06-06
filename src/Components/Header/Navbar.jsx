@@ -58,14 +58,14 @@ const Navbar = () => {
                 </div>
 
                 {/* Central Search Bar - Only Visible on Desktop (>= md) to match your image */}
-                <div className="hidden md:flex flex-1 max-w-2xl focus:outline items-center bg-[#F5F5F5] rounded-md pl-4 pr-1.5 py-1.5 mx-4">
+                <div className="hidden md:flex flex-1 max-w-2xl  items-center bg-[#F5F5F5] rounded-md pl-4 pr-1.5 py-1.5 mx-4">
                    
                     <input
                         type="text"
                         placeholder="I am looking for..."
-                        className="w-full bg-transparent px-4 text-sm text-gray-700 placeholder-gray-400   "
+                        className="w-full bg-transparent p-2 text-sm outline rounded-l-md  text-gray-700 placeholder-gray-400   "
                     />
-                    <button className="bg-black hover:bg-gray-800 transition-colors p-2.5 rounded-md flex items-center justify-center text-white">
+                    <button className="bg-black hover:bg-gray-800 transition-colors p-3 rounded-r-md flex items-center justify-center text-white">
                         <Search className="w-4 h-4" />
                     </button>
                 </div>

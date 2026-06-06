@@ -3,6 +3,7 @@ import Navbar from '../../Components/Header/Navbar';
 import { Outlet } from 'react-router';
 import Footer from '../../Components/Footer/Footer';
 import MenuBar from '../../Components/Header/MenuBar';
+import HeroSection from '../../Components/Header/HeroSection';
 
 const MainLayout = () => {
     return (
@@ -10,6 +11,7 @@ const MainLayout = () => {
             <header>
                 <Navbar></Navbar>
                 <MenuBar></MenuBar>
+                <HeroSection></HeroSection>
             </header>
             <main>
                 <Outlet></Outlet>
