@@ -63,9 +63,9 @@ const Navbar = () => {
                     <input
                         type="text"
                         placeholder="I am looking for..."
-                        className="w-full bg-transparent p-2 text-sm outline rounded-l-md  text-gray-700 placeholder-gray-400   "
+                        className="w-full bg-transparent p-2 text-sm outline outline-[#7C4DFF] rounded-l-md  text-gray-700 placeholder-gray-400   "
                     />
-                    <button className="bg-black hover:bg-gray-800 transition-colors p-3 rounded-r-md flex items-center justify-center text-white">
+                    <button className="bg-[#7C4DFF] hover:bg-gray-800 transition-colors p-3 rounded-r-md flex items-center justify-center text-white">
                         <Search className="w-4 h-4" />
                     </button>
                 </div>
