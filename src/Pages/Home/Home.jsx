@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router';
 import ProductCard from '../../Components/ProductCard';
+import PopularCategories from '../../Components/PopularCategories';
 
 const Home = () => {
   const products = useLoaderData() || [];
@@ -128,6 +129,11 @@ const Home = () => {
             </div>
           )}
         </div>
+      </div>
+
+
+      <div>
+        <PopularCategories></PopularCategories>
       </div>
     </div>
   );
