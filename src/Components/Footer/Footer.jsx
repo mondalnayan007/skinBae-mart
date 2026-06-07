@@ -1,4 +1,5 @@
 import React from 'react';
+import  logo from '/logo-footer.png'
 // Lucide আইকনগুলোর পিওর এসভিজি পাথ ব্যবহার করা হয়েছে যাতে কোনো এক্সটার্নাল প্যাকেজ ক্রাশ না করে
 const Footer = () => {
   return (
@@ -11,9 +12,12 @@ const Footer = () => {
           {/* Column 1: Logo, Address & Social Links */}
           <div className="flex flex-col gap-4">
             {/* Website Logo/Name */}
-            <div className="flex items-center gap-2">
-              <span className="text-xl font-black text-white tracking-wider uppercase">
-                Skin<span className="text-[#7C4DFF]">bae</span>
+            <div className="flex items-center ">
+                <span >
+                    <img className='h-[100px] w-[100px]' src={logo} alt="" />
+                </span>
+              <span className="text-xl font-black text-white tracking-wider ">
+                SkinBae Mart
               </span>
             </div>
             {/* Address & Contact Info */}
@@ -60,8 +64,8 @@ const Footer = () => {
             <ul className="flex flex-col gap-2.5 text-sm text-gray-400">
               <li><a href="#" className="hover:text-[#7C4DFF] transition-colors duration-200">COSRX</a></li>
               <li><a href="#" className="hover:text-[#7C4DFF] transition-colors duration-200">CeraVe</a></li>
-              <li><a href="#" className="hover:text-[#7C4DFF] transition-colors duration-200">Skin Cafe</a></li>
-              <li><a href="#" className="hover:text-[#7C4DFF] transition-colors duration-200">RIBANA</a></li>
+              <li><a href="#" className="hover:text-[#7C4DFF] transition-colors duration-200">The Ordinary</a></li>
+              <li><a href="#" className="hover:text-[#7C4DFF] transition-colors duration-200">Avonee</a></li>
               <li><a href="#" className="hover:text-[#7C4DFF] transition-colors duration-200">PINKFLASH</a></li>
             </ul>
           </div>

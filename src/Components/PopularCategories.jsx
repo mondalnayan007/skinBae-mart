@@ -53,6 +53,7 @@ const PopularCategories = () => {
         <h1 className="text-xl sm:text-2xl font-bold text-gray-950 tracking-tight text-center md:text-left">
           Popular Categories
         </h1>
+        
       </div>
 
       {/* Slider Main Container */}
