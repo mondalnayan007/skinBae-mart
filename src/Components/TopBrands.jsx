@@ -32,7 +32,7 @@ const TopBrands = () => {
       </div>
 
       {/* Modern Infinite Marquee Wrapper */}
-      <div className="w-full  py-5 border-y border-gray-100">
+      <div className="w-full  py-4 border-y border-gray-100">
         <Marquee
           direction="left"        // বাম থেকে ডানে স্লাইড (Left to Right)
           pauseOnHover={true}      // মাউস এন্টার করলে স্লাইডার থেমে যাবে
