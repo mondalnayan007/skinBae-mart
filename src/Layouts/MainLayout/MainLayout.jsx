@@ -11,7 +11,7 @@ const MainLayout = () => {
             <header>
                 <Navbar></Navbar>
                 <MenuBar></MenuBar>
-                <HeroSection></HeroSection>
+                
             </header>
             <main>
                 <Outlet></Outlet>

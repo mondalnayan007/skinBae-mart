@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useLoaderData } from 'react-router';
 import ProductCard from '../../Components/ProductCard';
 import PopularCategories from '../../Components/PopularCategories';
+import FeatureBanner from '../../Components/FeatureBanner';
+import HeroSection from '../../Components/Header/HeroSection';
 
 const Home = () => {
   const products = useLoaderData() || [];
@@ -44,6 +46,13 @@ const Home = () => {
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 select-none overflow-hidden sm:overflow-visible">
+      <div>
+        <HeroSection></HeroSection>
+      </div>
+      <div className='mb-10'>
+        <FeatureBanner></FeatureBanner>
+      </div>
+      
       <div>
         {/* Header Section with Tabs */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-4 mb-6">
@@ -135,6 +144,8 @@ const Home = () => {
       <div>
         <PopularCategories></PopularCategories>
       </div>
+      
+
     </div>
   );
 };
