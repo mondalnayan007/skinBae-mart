@@ -95,7 +95,7 @@ const Home = () => {
                   {filteredProducts.map((product) => (
                     <div
                       key={product.id}
-                      className="w-[calc(85%-12px)] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-12px)] lg:w-[calc(25%-12px)] flex-shrink-0 snap-center sm:snap-none"
+                      className="w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-12px)] lg:w-[calc(25%-12px)] flex-shrink-0 snap-center sm:snap-none"
                     >
                       <ProductCard product={product} />
                     </div>

@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 const PopularCategories = () => {
   const categories = [
-    { id: 1, name: 'Cleanser', count: 120, image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=150&auto=format&fit=crop&q=80' },
-    { id: 2, name: 'Moisturizer', count: 85, image: 'https://images.unsplash.com/photo-1608248597481-496100c80836?w=150&auto=format&fit=crop&q=80' },
-    { id: 3, name: 'Sunscreen', count: 64, image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=150&auto=format&fit=crop&q=80' },
-    { id: 4, name: 'Serum', count: 95, image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=150&auto=format&fit=crop&q=80' },
-    { id: 5, name: 'Toner', count: 42, image: 'https://images.unsplash.com/photo-1617897903246-719242758050?w=150&auto=format&fit=crop&q=80' },
-    { id: 6, name: 'Lip Care', count: 38, image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=150&auto=format&fit=crop&q=80' },
-    { id: 7, name: 'Eye Cream', count: 29, image: 'https://images.unsplash.com/photo-1629732047847-50b7ecf0cbf1?w=150&auto=format&fit=crop&q=80' },
-    { id: 8, name: 'Face Mask', count: 51, image: 'https://images.unsplash.com/photo-1567894340315-735d7c361db0?w=150&auto=format&fit=crop&q=80' },
+    { id: 1, name: 'Cleanser', count: 120, image: 'https://png.pngtree.com/png-vector/20230304/ourmid/pngtree-face-cleanser-line-icon-vector-png-image_6633336.png' },
+    { id: 2, name: 'Moisturizer', count: 85, image: 'https://i.ibb.co.com/qYNXv8Sv/cream.png' },
+    { id: 3, name: 'Sunscreen', count: 64, image: 'https://i.ibb.co.com/RXmkfVv/sunscreen.png' },
+    { id: 4, name: 'Serum', count: 95, image: 'https://i.ibb.co.com/cXbf5qxy/serum.png' },
+    { id: 5, name: 'Toner', count: 42, image: 'https://i.ibb.co.com/7dZmJBgL/toner.png' },
+    { id: 6, name: 'Shampoo', count: 38, image: 'https://i.ibb.co.com/pvqBxhh3/shampoo.png' },
+    { id: 7, name: 'Eye Cream', count: 29, image: 'https://i.ibb.co.com/Mk3w1TDj/eye-cream.png' },
+    { id: 8, name: 'Face Mask', count: 51, image: 'https://i.ibb.co.com/mrKTpgBs/sheet-mask.png' },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -78,8 +78,8 @@ const PopularCategories = () => {
                 <div className="group/item flex flex-col items-center cursor-pointer w-full">
                   
                   {/* Circle Image Wrapper - উইডথ ও হাইট কলামের সাথে ডাইনামিকলি রেসপনসিভ করা হয়েছে (w-full max-w) */}
-                  <div className="w-full aspect-square max-w-[130px] sm:max-w-[140px] md:max-w-[150px] lg:max-w-[190px] rounded-full overflow-hidden border border-gray-100 p-1 bg-white shadow-sm transition-all duration-300">
-                    <div className="w-full h-full rounded-full overflow-hidden bg-gray-50">
+                  <div className="w-full aspect-square max-w-[50px] sm:max-w-[60px] md:max-w-[80px] lg:max-w-[100px]  border border-gray-100 p-1 bg-white shadow-sm transition-all duration-300">
+                    <div className="w-full h-full   bg-gray-50">
                       <img
                         src={category.image}
                         alt={category.name}

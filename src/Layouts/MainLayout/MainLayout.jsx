@@ -3,12 +3,12 @@ import Navbar from '../../Components/Header/Navbar';
 import { Outlet } from 'react-router';
 import Footer from '../../Components/Footer/Footer';
 import MenuBar from '../../Components/Header/MenuBar';
-import HeroSection from '../../Components/Header/HeroSection';
+
 
 const MainLayout = () => {
     return (
         <div>
-            <header>
+            <header className='sticky top-0 z-100'>
                 <Navbar></Navbar>
                 <MenuBar></MenuBar>
                 

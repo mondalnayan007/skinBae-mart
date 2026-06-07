@@ -36,8 +36,9 @@ const TopBrands = () => {
         <Marquee
           direction="left"        // বাম থেকে ডানে স্লাইড (Left to Right)
           pauseOnHover={true}      // মাউস এন্টার করলে স্লাইডার থেমে যাবে
-          speed={80}               // স্লাইডারের স্পিড
-          gradient={true}          // দুই পাশে শ্যাডো/ব্লার ইফেক্ট
+          speed={60}               // স্লাইডারের স্পিড
+          gradient={true} 
+          gradientWidth={50}         // দুই পাশে শ্যাডো/ব্লার ইফেক্ট
               
         >
           {brands.map((brand) => (
