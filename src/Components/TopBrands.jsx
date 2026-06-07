@@ -32,7 +32,7 @@ const TopBrands = () => {
       </div>
 
       {/* Modern Infinite Marquee Wrapper */}
-      <div className="w-full  py-8 border-y border-gray-100">
+      <div className="w-full  py-5 border-y border-gray-100">
         <Marquee
           direction="left"        // বাম থেকে ডানে স্লাইড (Left to Right)
           pauseOnHover={true}      // মাউস এন্টার করলে স্লাইডার থেমে যাবে
@@ -43,10 +43,10 @@ const TopBrands = () => {
           {brands.map((brand) => (
             <div 
               key={brand.id} 
-              className="mx-5 sm:mx-12 flex flex-col items-center justify-center  group cursor-pointer"
+              className=" mx-5 sm:mx-8 flex flex-col items-center justify-center  group cursor-pointer"
             >
               {/* Logo Container Box */}
-              <div className="w-32 h-20 sm:w-50 sm:h-36 flex items-center justify-center gap-1 p-3 rounded-xl bg-white border border-gray-100/80 shadow-[0_4px_12px_rgba(0,0,0,0.02)] transition-all duration-300 transform group-hover:scale-105 group-hover:shadow-[0_8px_20px_rgba(124,77,255,0.06)] group-hover:border-[#7C4DFF]/20">
+              <div className="w-32 h-20 sm:w-50 sm:h-36 flex items-center justify-center  p-3 rounded-xl bg-white border border-gray-100/80 shadow-[0_4px_12px_rgba(0,0,0,0.02)] transition-all duration-300 transform group-hover:scale-105 group-hover:shadow-[0_8px_20px_rgba(124,77,255,0.06)] group-hover:border-[#7C4DFF]/20">
                 <img 
                   src={brand.logoUrl} 
                   alt={`${brand.name} Logo`}
