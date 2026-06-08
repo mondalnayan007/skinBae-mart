@@ -18,7 +18,6 @@ export const router = createBrowserRouter([
         },
         {
           path:'product/:id',
-          loader:({params})=> {fetch(`/public/products.json/${params.id}`)},
           Component: ProductDetails
         }
     ]
