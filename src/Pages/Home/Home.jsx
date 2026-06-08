@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 import ProductCard from '../../Components/ProductCard';
 import PopularCategories from '../../Components/PopularCategories';
 import FeatureBanner from '../../Components/FeatureBanner';
@@ -93,12 +93,12 @@ const Home = () => {
                   }}
                 >
                   {filteredProducts.map((product) => (
-                    <div
+                    <Link to={`product/${product.id}`}
                       key={product.id}
-                      className="w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-12px)] lg:w-[calc(25%-12px)] flex-shrink-0 snap-center sm:snap-none"
+                      className="w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-12px)] lg:w-[calc(25%-12px)] flex-shrink-0 snap-center sm:snap-none cursor-pointer"
                     >
                       <ProductCard product={product} />
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>
