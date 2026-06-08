@@ -1,253 +1,244 @@
 import React, { useState } from 'react';
 
 const AdminDashboard = () => {
-  // সেন্ট্রাল মডিউল রাউটিং স্টেট
   const [currentSection, setCurrentSection] = useState('products');
   
-  // প্রোডাক্ট লিস্ট স্টেট (CRUD অপারেশনের জন্য মক ডাটাবেজ)
+  // প্রোডাক্ট ডাটাবেজ স্টেট
   const [products, setProducts] = useState([
-    { id: 1, name: 'COSRX Snail Mucin Essence', category: 'Essence', price: 1450, stock: 42, seller: 'Skin Care BD', status: 'Bestselling' },
-    { id: 2, name: 'CeraVe Moisturizing Cream 16oz', category: 'Moisturizer', price: 1850, stock: 4, seller: 'Seoul Cosmetics', status: 'New' },
-    { id: 3, name: 'Ribana Saffron Brightening Soap', category: 'Soap', price: 950, stock: 0, seller: 'Ribana Official', status: 'Featured' },
+    { id: 1, name: 'COSRX Snail Mucin Essence', category: 'Essence', price: 1450, stock: 42, seller: 'Skin Care BD', status: 'Bestselling', img: 'https://images.unsplash.com/photo-1608248597481-496100c80836?w=150' },
+    { id: 2, name: 'CeraVe Moisturizing Cream', category: 'Moisturizer', price: 1850, stock: 4, seller: 'Seoul Cosmetics', status: 'New', img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=150' },
+    { id: 3, name: 'Ribana Saffron Soap', category: 'Soap', price: 950, stock: 0, seller: 'Ribana Official', status: 'Featured', img: 'https://images.unsplash.com/photo-1607006342456-ba275550e60a?w=150' },
   ]);
 
-  // সেলার বা ভেন্ডর ডাটা স্টেট
+  // সেলার ডাটা স্টেট
   const [sellers, setSellers] = useState([
-    { id: 1, name: 'Skin Care BD', email: 'info@skincarebd.com', activeProducts: 120, totalSales: '৳4,50,000', payoutPending: '৳35,000', status: 'Approved' },
-    { id: 2, name: 'Seoul Cosmetics', email: 'wholesale@seoul.com', activeProducts: 85, totalSales: '৳2,80,000', payoutPending: '৳0', status: 'Approved' },
-    { id: 3, name: 'Ribana Official', email: 'sales@ribana.com', activeProducts: 14, totalSales: '৳1,20,000', payoutPending: '৳18,500', status: 'Pending Review' },
+    { id: 1, name: 'Skin Care BD', email: 'info@skincarebd.com', activeProducts: 120, totalSales: '4,50,000', payoutPending: '35,000', rating: 4.8 },
+    { id: 2, name: 'Seoul Cosmetics', email: 'wholesale@seoul.com', activeProducts: 85, totalSales: '2,80,000', payoutPending: '0', rating: 4.5 },
+    { id: 3, name: 'Ribana Official', email: 'sales@ribana.com', activeProducts: 14, totalSales: '1,20,000', payoutPending: '18,500', rating: 4.9 },
   ]);
 
-  // Modal এবং Form states (নতুন প্রোডাক্ট অ্যাড এবং এডিটের জন্য)
+  // Modal & Form States
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [currentProductForm, setCurrentProductForm] = useState({ id: '', name: '', category: '', price: '', stock: '', seller: '', status: 'New' });
+  const [form, setForm] = useState({ id: '', name: '', category: '', price: '', stock: '', seller: '', status: 'New', img: '' });
 
-  // ==========================================
-  // CRUD & MANAGEMENT LOGICS
-  // ==========================================
-  
-  // ফর্ম ওপেন করার ফাংশন (Add New এর জন্য)
-  const openAddModal = () => {
-    setCurrentProductForm({ id: '', name: '', category: '', price: '', stock: '', seller: '', status: 'New' });
-    setIsEditing(false);
+  const openForm = (product = null) => {
+    if (product) {
+      setForm(product);
+      setIsEditing(true);
+    } else {
+      setForm({ id: '', name: '', category: '', price: '', stock: '', seller: '', status: 'New', img: 'https://images.unsplash.com/photo-1608248597481-496100c80836?w=150' });
+      setIsEditing(false);
+    }
     setIsModalOpen(true);
   };
 
-  // ফর্ম ওপেন করার ফাংশন (Edit এর জন্য)
-  const openEditModal = (product) => {
-    setCurrentProductForm(product);
-    setIsEditing(true);
-    setIsModalOpen(true);
-  };
-
-  // ফর্ম সাবমিট হ্যান্ডলার (অ্যাড এবং এডিট দুইটাই হ্যান্ডেল করবে)
-  const handleFormSubmit = (e) => {
+  const handleSave = (e) => {
     e.preventDefault();
     if (isEditing) {
-      // Update Logic
-      setProducts(products.map(p => p.id === currentProductForm.id ? currentProductForm : p));
+      setProducts(products.map(p => p.id === form.id ? form : p));
     } else {
-      // Create Logic
-      const newProduct = { ...currentProductForm, id: Date.now() };
-      setProducts([...products, newProduct]);
+      setProducts([...products, { ...form, id: Date.now() }]);
     }
     setIsModalOpen(false);
   };
 
-  // প্রোডাক্ট ডিলিট করার লজিক
-  const handleDeleteProduct = (id) => {
-    if(window.confirm("Are you sure you want to delete this product from MongoDB?")) {
-      setProducts(products.filter(p => p.id !== id));
-    }
-  };
-
   return (
-    <div className="flex h-screen bg-[#F4F6F9] text-gray-800 font-sans antialiased select-none overflow-hidden">
+    <div className="flex h-screen bg-[#0B0F19] text-gray-100 font-sans antialiased overflow-hidden selection:bg-[#7C4DFF] selection:text-white">
       
       {/* ========================================== */}
-      {/* SIDEBAR: NAVIGATION PANEL */}
+      {/* SIDEBAR: ULTRA MODERN DARK HUD */}
       {/* ========================================== */}
-      <aside className="w-72 bg-gray-950 text-gray-400 flex flex-col justify-between hidden lg:flex flex-shrink-0">
-        <div className="flex flex-col overflow-y-auto">
-          <div className="p-6 border-b border-gray-900 flex items-center justify-between">
-            <span className="text-xl font-black text-white tracking-widest uppercase">
-              Skin<span className="text-[#7C4DFF]">bae</span> <span className="text-xs font-normal text-purple-400">HQ</span>
+      <aside className="w-72 bg-[#111827]/60 backdrop-blur-xl border-r border-gray-800/60 hidden lg:flex flex-col justify-between p-6">
+        <div className="flex flex-col gap-8">
+          {/* Brand Premium Identity */}
+          <div className="flex items-center gap-3 px-2">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#7C4DFF] to-[#B388FF] flex items-center justify-center shadow-[0_0_20px_rgba(124,77,255,0.4)]">
+              <span className="text-white font-black text-sm">SB</span>
+            </div>
+            <span className="text-lg font-black tracking-widest bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent uppercase">
+              Skinbae<span className="text-[#7C4DFF] font-medium text-xs tracking-normal normal-case ml-1">OS</span>
             </span>
-            <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
           </div>
 
-          <nav className="p-4 flex flex-col gap-1">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-gray-600 px-3 mb-2">Core ERP Modules</span>
+          {/* Navigation Links */}
+          <nav className="flex flex-col gap-1.5">
+            <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest px-3 mb-2">Management Core</span>
             
-            <button onClick={() => setCurrentSection('products')} className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all ${currentSection === 'products' ? 'bg-[#7C4DFF] text-white' : 'hover:bg-gray-900'}`}>
-              📦 Products & CRUD
-            </button>
-            <button onClick={() => setCurrentSection('stock')} className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all ${currentSection === 'stock' ? 'bg-[#7C4DFF] text-white' : 'hover:bg-gray-900'}`}>
-              📊 Stock & Inventory
-            </button>
-            <button onClick={() => setCurrentSection('sellers')} className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all ${currentSection === 'sellers' ? 'bg-[#7C4DFF] text-white' : 'hover:bg-gray-900'}`}>
-              🤝 Seller Management
-            </button>
-            
-            <span className="text-[10px] font-bold uppercase tracking-wider text-gray-600 px-3 my-2">Frontend Control</span>
-            <button onClick={() => alert('Redirecting to UI Settings...')} className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold hover:bg-gray-900 text-left">
-              ⚡ Marquee & Lottie Banner
-            </button>
+            {[
+              { id: 'products', label: 'Product Inventory', icon: '💎' },
+              { id: 'stock', label: 'Stock Logistics', icon: '🔥' },
+              { id: 'sellers', label: 'Vendor Directory', icon: '👑' }
+            ].map((item) => (
+              <button
+                key={item.id}
+                onClick={() => setCurrentSection(item.id)}
+                className={`flex items-center gap-3.5 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+                  currentSection === item.id
+                    ? 'bg-gradient-to-r from-[#7C4DFF]/20 to-[#7C4DFF]/5 text-[#B388FF] border border-[#7C4DFF]/30 shadow-[0_0_15px_rgba(124,77,255,0.1)]'
+                    : 'text-gray-400 hover:text-white hover:bg-gray-800/30'
+                }`}
+              >
+                <span>{item.icon}</span>
+                {item.label}
+              </button>
+            ))}
           </nav>
         </div>
-        
-        <div className="p-4 bg-black/20 border-t border-gray-900 text-xs text-center text-gray-500 font-mono">
-          Logged in as: Super_Admin
+
+        {/* Admin Tag */}
+        <div className="bg-[#1F2937]/40 border border-gray-800/60 rounded-2xl p-4 flex items-center gap-3">
+          <div className="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center font-bold text-xs text-[#B388FF]">💻</div>
+          <div>
+            <h4 className="text-xs font-bold text-white">Root Developer</h4>
+            <p className="text-[10px] text-gray-500 font-mono">secure_session_active</p>
+          </div>
         </div>
       </aside>
 
       {/* ========================================== */}
-      {/* MAIN CONSOLE DISPLAY AREA */}
+      {/* MAIN CONSOLE AREA */}
       {/* ========================================== */}
       <main className="flex-1 flex flex-col overflow-hidden">
         
-        {/* Universal Top Header */}
-        <header className="bg-white h-20 border-b border-gray-200 flex items-center justify-between px-8 sticky top-0 z-20 flex-shrink-0">
-          <div className="flex flex-col">
-            <span className="text-xs font-bold uppercase text-gray-400">Operations Control</span>
-            <h1 className="text-lg font-black text-gray-950 uppercase tracking-tight capitalize">{currentSection} Management Panel</h1>
+        {/* Top Floating Glass Header */}
+        <header className="h-20 bg-[#0B0F19]/80 backdrop-blur-md border-b border-gray-900 flex items-center justify-between px-8 z-10 flex-shrink-0">
+          <div>
+            <h1 className="text-lg font-black uppercase tracking-widest bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+              {currentSection} Hub
+            </h1>
           </div>
           
           {currentSection === 'products' && (
-            <button onClick={openAddModal} className="bg-[#7C4DFF] text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-lg shadow-[#7C4DFF]/20 hover:bg-[#6236ff] transition-all">
-              + Insert New Product
+            <button 
+              onClick={() => openForm()}
+              className="bg-gradient-to-r from-[#7C4DFF] to-[#6236ff] text-white text-xs font-bold uppercase tracking-widest px-5 py-3 rounded-xl shadow-[0_4px_20px_rgba(124,77,255,0.25)] hover:shadow-[0_4px_25px_rgba(124,77,255,0.4)] transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+            >
+              + Create Product
             </button>
           )}
         </header>
 
-        {/* Dynamic View Container */}
+        {/* Dynamic Viewport */}
         <div className="flex-1 overflow-y-auto p-6 lg:p-8">
           <div className="max-w-6xl w-full mx-auto">
 
             {/* -------------------------------------- */}
-            {/* MODULE 1: PRODUCT CATALOG & CRUD TABLE */}
+            {/* MODULE 1: PRODUCTS INVENTORY (CARDS BASED) */}
             {/* -------------------------------------- */}
             {currentSection === 'products' && (
-              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-                <div className="p-6 border-b border-gray-50 bg-gray-50/50">
-                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Live Inventory Array</h3>
-                </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="border-b border-gray-100 text-xs font-bold text-gray-400 uppercase tracking-wider bg-gray-50/30">
-                        <th className="p-4">Model Name</th>
-                        <th className="p-4">Category</th>
-                        <th className="p-4">Frontend Tab</th>
-                        <th className="p-4">Price</th>
-                        <th className="p-4 text-right">Database Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-sm divide-y divide-gray-100 font-medium text-gray-600">
-                      {products.map((product) => (
-                        <tr key={product.id} className="hover:bg-gray-50/60 transition-colors">
-                          <td className="p-4 font-bold text-gray-900">{product.name}</td>
-                          <td className="p-4 text-gray-400">{product.category}</td>
-                          <td className="p-4">
-                            <span className="px-2.5 py-0.5 bg-purple-50 text-purple-600 text-xs font-bold rounded-full">{product.status}</span>
-                          </td>
-                          <td className="p-4 text-gray-900 font-bold">৳{product.price}</td>
-                          <td className="p-4 text-right flex items-center justify-end gap-3">
-                            <button onClick={() => openEditModal(product)} className="text-xs font-bold text-[#7C4DFF] hover:underline">Edit</button>
-                            <span className="text-gray-200">|</span>
-                            <button onClick={() => handleDeleteProduct(product.id)} className="text-xs font-bold text-red-500 hover:underline">Delete</button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {products.map((product) => (
+                  <div key={product.id} className="bg-[#111827]/40 border border-gray-800/80 rounded-2xl p-5 flex flex-col justify-between gap-4 hover:border-[#7C4DFF]/40 transition-all duration-300 group shadow-sm">
+                    <div className="flex items-start justify-between gap-4">
+                      <img src={product.img} alt={product.name} className="w-16 h-16 rounded-xl object-cover border border-gray-800 bg-gray-900 flex-shrink-0" />
+                      <div className="flex-1 min-w-0">
+                        <span className="text-[10px] bg-gray-800 text-gray-400 px-2 py-0.5 rounded-md font-bold uppercase tracking-wider">{product.category}</span>
+                        <h3 className="text-sm font-bold text-white mt-1.5 truncate group-hover:text-[#B388FF] transition-colors">{product.name}</h3>
+                        <p className="text-[11px] text-gray-500 mt-0.5 truncate">Via {product.seller}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between border-t border-gray-900/60 pt-4 mt-2">
+                      <div>
+                        <p className="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Price</p>
+                        <p className="text-base font-black text-white mt-0.5">৳{product.price}</p>
+                      </div>
+                      <div>
+                        <span className="px-2.5 py-1 bg-[#7C4DFF]/10 text-[#B388FF] text-[10px] font-bold uppercase tracking-wider rounded-lg border border-[#7C4DFF]/20">
+                          {product.status}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2 mt-1">
+                      <button onClick={() => openForm(product)} className="w-full bg-gray-800/50 hover:bg-gray-800 border border-gray-800 text-white font-bold text-xs py-2 rounded-xl transition-all">Edit Asset</button>
+                      <button onClick={() => setProducts(products.filter(p => p.id !== product.id))} className="w-full bg-rose-500/10 hover:bg-rose-500 text-rose-400 hover:text-white border border-rose-500/20 text-xs font-bold py-2 rounded-xl transition-all">Wipe</button>
+                    </div>
+                  </div>
+                ))}
               </div>
             )}
 
             {/* -------------------------------------- */}
-            {/* MODULE 2: STOCK & INVENTORY METRICS */}
+            {/* MODULE 2: STOCK LOGISTICS */}
             {/* -------------------------------------- */}
             {currentSection === 'stock' && (
-              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-                <div className="p-6 border-b border-gray-50 bg-gray-50/50">
-                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Stock Control & Warehousing</h3>
+              <div className="bg-[#111827]/30 border border-gray-800/80 rounded-2xl overflow-hidden backdrop-blur-md">
+                <div className="p-6 border-b border-gray-900 bg-gray-900/20 flex items-center justify-between">
+                  <h3 className="text-xs font-black uppercase tracking-widest text-gray-400">Warehouse Allocation</h3>
+                  <span className="text-[11px] font-mono text-[#B388FF]">Live Sync Count</span>
                 </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="border-b border-gray-100 text-xs font-bold text-gray-400 uppercase tracking-wider bg-gray-50/30">
-                        <th className="p-4">Product</th>
-                        <th className="p-4">Vendor</th>
-                        <th className="p-4">Units in Hand</th>
-                        <th className="p-4">Stock Status Alert</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-sm divide-y divide-gray-100 font-medium text-gray-600">
-                      {products.map((product) => (
-                        <tr key={product.id} className="hover:bg-gray-50/60">
-                          <td className="p-4 font-bold text-gray-900">{product.name}</td>
-                          <td className="p-4 text-gray-400">{product.seller}</td>
-                          <td className="p-4 font-mono font-bold text-gray-900">{product.stock} Pcs</td>
-                          <td className="p-4">
-                            {product.stock === 0 ? (
-                              <span className="px-2.5 py-1 bg-red-50 text-red-600 text-[11px] font-black uppercase rounded-lg border border-red-100">Out of Stock</span>
-                            ) : product.stock <= 5 ? (
-                              <span className="px-2.5 py-1 bg-amber-50 text-amber-600 text-[11px] font-black uppercase rounded-lg border border-amber-100 animate-pulse">Critical Low Stock</span>
-                            ) : (
-                              <span className="px-2.5 py-1 bg-emerald-50 text-emerald-600 text-[11px] font-black uppercase rounded-lg border border-emerald-100">Stock Stable</span>
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                <div className="divide-y divide-gray-900">
+                  {products.map((product) => (
+                    <div key={product.id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-gray-900/20 transition-all">
+                      <div className="flex items-center gap-4">
+                        <img src={product.img} alt="" className="w-10 h-10 rounded-lg object-cover border border-gray-800 bg-gray-900" />
+                        <div>
+                          <h4 className="text-sm font-bold text-white">{product.name}</h4>
+                          <p className="text-xs text-gray-500 mt-0.5">Vendor Node: <span className="text-gray-400">{product.seller}</span></p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-6">
+                        <span className="text-sm font-mono font-bold text-gray-300">{product.stock} Units Avaialble</span>
+                        <div className="w-32">
+                          {product.stock === 0 ? (
+                            <span className="w-full block text-center py-1 bg-red-500/10 text-red-400 border border-red-500/20 rounded-lg text-[10px] font-black uppercase tracking-wider">Out of Stock</span>
+                          ) : product.stock <= 5 ? (
+                            <span className="w-full block text-center py-1 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-lg text-[10px] font-black uppercase tracking-wider animate-pulse">Critical Low</span>
+                          ) : (
+                            <span className="w-full block text-center py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-lg text-[10px] font-black uppercase tracking-wider">Stable Buffer</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             )}
 
             {/* -------------------------------------- */}
-            {/* MODULE 3: SELLER & VENDOR CONTROLLER */}
+            {/* MODULE 3: VENDOR DIRECTORY */}
             {/* -------------------------------------- */}
             {currentSection === 'sellers' && (
-              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-                <div className="p-6 border-b border-gray-50 bg-gray-50/50">
-                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Multi-Vendor Analytics</h3>
-                </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="border-b border-gray-100 text-xs font-bold text-gray-400 uppercase tracking-wider bg-gray-50/30">
-                        <th className="p-4">Seller Identity</th>
-                        <th className="p-4">SKUs Listed</th>
-                        <th className="p-4">Gross Revenue</th>
-                        <th className="p-4">Pending Pay-out</th>
-                        <th className="p-4 text-right">Clearance</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-sm divide-y divide-gray-100 font-medium text-gray-600">
-                      {sellers.map((seller) => (
-                        <tr key={seller.id} className="hover:bg-gray-50/60">
-                          <td className="p-4">
-                            <p className="font-bold text-gray-900">{seller.name}</p>
-                            <p className="text-[11px] text-gray-400 font-mono">{seller.email}</p>
-                          </td>
-                          <td className="p-4 font-bold text-gray-900">{seller.activeProducts} Items</td>
-                          <td className="p-4 text-gray-900 font-bold">{seller.totalSales}</td>
-                          <td className="p-4 text-rose-600 font-black">{seller.payoutPending}</td>
-                          <td className="p-4 text-right">
-                            {seller.payoutPending !== '৳0' ? (
-                              <button onClick={() => alert(`Processing payout for ${seller.name}`)} className="bg-gray-900 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg hover:bg-gray-800">Release Cash</button>
-                            ) : (
-                              <span className="text-xs text-gray-400">Settled</span>
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {sellers.map((seller) => (
+                  <div key={seller.id} className="bg-[#111827]/40 border border-gray-800/80 rounded-2xl p-6 flex flex-col justify-between gap-5">
+                    <div className="flex items-center justify-between border-b border-gray-900/80 pb-4">
+                      <div>
+                        <h3 className="text-sm font-black text-white tracking-wide">{seller.name}</h3>
+                        <p className="text-xs font-mono text-gray-500 mt-0.5">{seller.email}</p>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-xs font-bold text-amber-400">★ {seller.rating}</span>
+                        <p className="text-[10px] text-gray-500 mt-0.5">Vendor Rating</p>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-2 text-center">
+                      <div className="p-3 bg-gray-900/30 border border-gray-900 rounded-xl">
+                        <span className="text-[10px] text-gray-500 uppercase font-bold tracking-wider">SKUs</span>
+                        <p className="text-sm font-bold text-white mt-1">{seller.activeProducts}</p>
+                      </div>
+                      <div className="p-3 bg-gray-900/30 border border-gray-900 rounded-xl">
+                        <span className="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Gross Sales</span>
+                        <p className="text-sm font-bold text-emerald-400 mt-1">৳{seller.totalSales}</p>
+                      </div>
+                      <div className="p-3 bg-gray-900/30 border border-gray-900 rounded-xl">
+                        <span className="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Owed</span>
+                        <p className="text-sm font-bold text-rose-400 mt-1">৳{seller.payoutPending}</p>
+                      </div>
+                    </div>
+
+                    {seller.payoutPending !== '0' ? (
+                      <button onClick={() => alert(`Clearing dues for ${seller.name}`)} className="w-full bg-gradient-to-r from-[#7C4DFF] to-[#6236ff] text-white font-bold text-xs uppercase tracking-widest py-2.5 rounded-xl shadow-lg shadow-[#7C4DFF]/10 hover:shadow-[#7C4DFF]/20 transition-all">
+                        Clear Payout Vault
+                      </button>
+                    ) : (
+                      <div className="text-center text-xs text-gray-500 border border-dashed border-gray-800 py-2 rounded-xl bg-gray-900/10">All Dues Settled</div>
+                    )}
+                  </div>
+                ))}
               </div>
             )}
 
@@ -255,32 +246,31 @@ const AdminDashboard = () => {
         </div>
       </main>
 
-      {/* =================================================** = */}
-      {/* GLOBAL MODAL COMPONENT: ADD / EDIT PRODUCT FORM */}
-      {/* =================================================** = */}
+      {/* ========================================== */}
+      {/* HUD GLASS MODAL FORM */}
+      {/* ========================================== */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white w-full max-w-lg rounded-2xl shadow-2xl border border-gray-100 p-6 flex flex-col gap-5 mx-4">
-            
-            <div className="flex items-center justify-between border-b border-gray-100 pb-3">
-              <h3 className="text-base font-black text-gray-950 uppercase">{isEditing ? 'Modify Product Data' : 'Insert Product into MongoDB'}</h3>
-              <button onClick={() => setIsModalOpen(false)} className="text-gray-400 hover:text-gray-700 font-bold text-lg">×</button>
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-4">
+          <div className="bg-[#111827] w-full max-w-lg rounded-2xl border border-gray-800 shadow-2xl p-6 flex flex-col gap-5">
+            <div className="flex items-center justify-between border-b border-gray-900 pb-3">
+              <h3 className="text-sm font-black uppercase tracking-widest text-white">{isEditing ? 'Update Node Item' : 'Provision MongoDB Record'}</h3>
+              <button onClick={() => setIsModalOpen(false)} className="text-gray-500 hover:text-white text-xl font-bold">×</button>
             </div>
 
-            <form onSubmit={handleFormSubmit} className="flex flex-col gap-4 text-xs font-bold text-gray-500">
+            <form onSubmit={handleSave} className="flex flex-col gap-4 text-[11px] font-bold uppercase tracking-wider text-gray-400">
               <div className="flex flex-col gap-1.5">
-                <label className="uppercase">Product Name</label>
-                <input required type="text" value={currentProductForm.name} onChange={(e) => setCurrentProductForm({...currentProductForm, name: e.target.value})} className="border border-gray-200 p-2.5 rounded-xl text-sm font-medium text-gray-900 focus:outline-none focus:border-[#7C4DFF]" placeholder="e.g. COSRX BHA Liquid" />
+                <label>Product Label / Model</label>
+                <input required type="text" value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} className="bg-[#0B0F19] border border-gray-800 p-3 rounded-xl text-sm normal-case text-white focus:outline-none focus:border-[#7C4DFF]" />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
-                  <label className="uppercase">Category</label>
-                  <input required type="text" value={currentProductForm.category} onChange={(e) => setCurrentProductForm({...currentProductForm, category: e.target.value})} className="border border-gray-200 p-2.5 rounded-xl text-sm font-medium text-gray-900 focus:outline-none focus:border-[#7C4DFF]" placeholder="e.g. Essence" />
+                  <label>Category Node</label>
+                  <input required type="text" value={form.category} onChange={(e) => setForm({...form, category: e.target.value})} className="bg-[#0B0F19] border border-gray-800 p-3 rounded-xl text-sm normal-case text-white focus:outline-none focus:border-[#7C4DFF]" />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="uppercase">Frontend Tab Placement</label>
-                  <select value={currentProductForm.status} onChange={(e) => setCurrentProductForm({...currentProductForm, status: e.target.value})} className="border border-gray-200 p-2.5 rounded-xl text-sm font-bold text-gray-900 focus:outline-none focus:border-[#7C4DFF]">
+                  <label>UI Tab Target</label>
+                  <select value={form.status} onChange={(e) => setForm({...form, status: e.target.value})} className="bg-[#0B0F19] border border-gray-800 p-3 rounded-xl text-sm font-bold text-white focus:outline-none focus:border-[#7C4DFF]">
                     <option value="Featured Products">Featured Products</option>
                     <option value="New Products">New Products</option>
                     <option value="Bestselling products">Bestselling products</option>
@@ -290,33 +280,32 @@ const AdminDashboard = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
-                  <label className="uppercase">Price (BDT)</label>
-                  <input required type="number" value={currentProductForm.price} onChange={(e) => setCurrentProductForm({...currentProductForm, price: Number(e.target.value)})} className="border border-gray-200 p-2.5 rounded-xl text-sm font-medium text-gray-900 focus:outline-none focus:border-[#7C4DFF]" placeholder="1450" />
+                  <label>Price (BDT Value)</label>
+                  <input required type="number" value={form.price} onChange={(e) => setForm({...form, price: Number(e.target.value)})} className="bg-[#0B0F19] border border-gray-800 p-3 rounded-xl text-sm text-white focus:outline-none focus:border-[#7C4DFF]" />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="uppercase">Initial Stock (Warehouse)</label>
-                  <input required type="number" value={currentProductForm.stock} onChange={(e) => setCurrentProductForm({...currentProductForm, stock: Number(e.target.value)})} className="border border-gray-200 p-2.5 rounded-xl text-sm font-medium text-gray-900 focus:outline-none focus:border-[#7C4DFF]" placeholder="50" />
+                  <label>Warehouse Volume</label>
+                  <input required type="number" value={form.stock} onChange={(e) => setForm({...form, stock: Number(e.target.value)})} className="bg-[#0B0F19] border border-gray-800 p-3 rounded-xl text-sm text-white focus:outline-none focus:border-[#7C4DFF]" />
                 </div>
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="uppercase">Assigned Seller/Vendor</label>
-                <select value={currentProductForm.seller} onChange={(e) => setCurrentProductForm({...currentProductForm, seller: e.target.value})} className="border border-gray-200 p-2.5 rounded-xl text-sm font-bold text-gray-900 focus:outline-none focus:border-[#7C4DFF]">
-                  <option value="">Select Vendor</option>
+                <label>Assigned Verified Seller</label>
+                <select value={form.seller} onChange={(e) => setForm({...form, seller: e.target.value})} className="bg-[#0B0F19] border border-gray-800 p-3 rounded-xl text-sm text-white focus:outline-none focus:border-[#7C4DFF]">
+                  <option value="">Choose Supplier</option>
                   <option value="Skin Care BD">Skin Care BD</option>
                   <option value="Seoul Cosmetics">Seoul Cosmetics</option>
                   <option value="Ribana Official">Ribana Official</option>
                 </select>
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 mt-2">
-                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2.5 bg-gray-100 text-gray-600 rounded-xl hover:bg-gray-200 transition-all">Cancel</button>
-                <button type="submit" className="px-5 py-2.5 bg-[#7C4DFF] text-white rounded-xl shadow-lg shadow-[#7C4DFF]/20 hover:bg-[#6236ff] transition-all">
-                  {isEditing ? 'Save System Changes' : 'Push Data Live'}
+              <div className="flex justify-end gap-3 pt-4 border-t border-gray-900 mt-2 text-xs">
+                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2.5 bg-gray-900 border border-gray-800 text-gray-400 rounded-xl hover:text-white">Abort</button>
+                <button type="submit" className="px-5 py-2.5 bg-gradient-to-r from-[#7C4DFF] to-[#6236ff] text-white rounded-xl shadow-lg shadow-[#7C4DFF]/10">
+                  {isEditing ? 'Commit Mutation' : 'Broadcast Asset Live'}
                 </button>
               </div>
             </form>
-
           </div>
         </div>
       )}
