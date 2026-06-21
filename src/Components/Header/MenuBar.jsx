@@ -22,7 +22,7 @@ const Menubar = () => {
   ];
 
   return (
-    <div className="w-full bg-white border-b border-gray-100 shadow-sm overflow-x-scroll md:visible">
+    <div className="w-full bg-white border-b  border-gray-100 shadow-sm overflow-x-scroll md:visible">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Horizontal Container: 
           Uses 'overflow-x-auto' and 'scrollbar-none' to swipe smoothly on mobile 

@@ -138,7 +138,7 @@ const Register = () => {
             {/* Submit Button */}
             <button 
               type="submit"
-              className="w-full h-12 bg-gradient-to-r from-[#7C4DFF] to-[#6236ff] text-white font-black text-xs uppercase tracking-widest rounded-xl shadow-[0_6px_24px_rgba(124,77,255,0.25)] hover:shadow-[0_6px_30px_rgba(124,77,255,0.4)] hover:brightness-110 active:scale-[0.98] transition-all mt-1"
+              className="w-full h-12 cursor-pointer bg-gradient-to-r from-[#7C4DFF] to-[#6236ff] text-white font-black text-xs uppercase tracking-widest rounded-xl shadow-[0_6px_24px_rgba(124,77,255,0.25)] hover:shadow-[0_6px_30px_rgba(124,77,255,0.4)] hover:brightness-110 active:scale-[0.98] transition-all mt-1"
             >
               Create Account 
             </button>
@@ -154,7 +154,7 @@ const Register = () => {
           <button 
             type="button" 
             onClick={() => alert("Connecting Official Google Identity Provider Hub...")}
-            className="w-full h-11 bg-white border border-[#DADCE0] hover:bg-[#F8F9FA] active:bg-[#F1F3F4] text-[#3C4043] font-medium text-sm rounded-xl flex items-center justify-center gap-3 transition-colors shadow-sm px-4"
+            className="w-full h-11 cursor-pointer bg-white border border-[#DADCE0] hover:bg-[#F8F9FA] active:bg-[#F1F3F4] text-[#3C4043] font-medium text-sm rounded-xl flex items-center justify-center gap-3 transition-colors shadow-sm px-4"
             style={{ fontFamily: "'Roboto', sans-serif" }}
           >
             <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
