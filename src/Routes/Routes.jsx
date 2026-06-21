@@ -3,6 +3,7 @@ import MainLayout from "../Layouts/MainLayout/MainLayout";
 import Home from "../Pages/Home/Home";
 import AdminDashboard from "../Layouts/AdminLayout/AdminDashboard";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
+import Login from "../Pages/Login/Login";
 
 
 export const router = createBrowserRouter([
@@ -19,7 +20,12 @@ export const router = createBrowserRouter([
         {
           path:'product/:id',
           Component: ProductDetails
+        },
+        {
+          path:'/login',
+          Component: Login
         }
+
     ]
   },
   {

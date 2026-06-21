@@ -82,7 +82,7 @@ const Navbar = () => {
                     </button>
 
                     {/* Router Links for both Mobile and Desktop */}
-                    <Link to="/profile" className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                    <Link to="/login" className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                         <User className="h-6 w-6 stroke-[1.5]" />
                     </Link>
 
