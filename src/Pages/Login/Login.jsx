@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router';
+import logo from '/logo-footer.png' 
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -35,10 +37,10 @@ const Login = () => {
                     <div className="absolute inset-0 bg-black/25 backdrop-blur-[1px] bg-gradient-to-t from-black/60 via-transparent to-black/20 z-0"></div>
 
                     {/* Top Brand Logo Node */}
-                    <div className="flex items-center gap-2 relative z-10 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 w-fit">
-                        <span className="w-6 h-6 rounded-full bg-gradient-to-r from-[#7C4DFF] to-[#FF2E63] flex items-center justify-center text-white font-black text-xs">S</span>
-                        <span className="text-[10px] font-black tracking-widest uppercase text-white">Skinbae Mart</span>
-                    </div>
+                    <Link to={'/'} className="flex items-center gap-2 relative z-10 bg-white/10 backdrop-blur-md px-2 rounded-full border border-white/20 w-fit">
+                        <span className='h-10 w-10'><img src={logo} alt="" /></span>
+                        <span className="text-[10px] font-black tracking-widest uppercase text-black font-bold">SkinBae Mart</span>
+                    </Link>
 
                     {/* Core Aesthetic Banner Content */}
                     <div className="mt-auto mb-6 relative z-10 text-white">
@@ -103,7 +105,7 @@ const Login = () => {
                                 <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest transition-colors group-focus-within:text-[#7C4DFF]">
                                     Password
                                 </label>
-                                <a href="#forgot" className="text-xs font-bold text-[#7C4DFF] hover:text-[#6236ff] transition-colors tracking-tight">Forgot?</a>
+                               
                             </div>
                             <div className="relative">
                                 <input
@@ -136,36 +138,41 @@ const Login = () => {
                         </div>
 
                         {/* Remember Me Checkbox Selector */}
-                        <div className="flex items-center gap-2.5 mt-1">
+                        <div className='flex justify-between'>
+                            <div className="flex items-center gap-2.5 mt-1">
                             <input
                                 type="checkbox"
                                 id="remember"
                                 className="w-4 h-4 text-[#7C4DFF] border-gray-200 rounded-lg focus:ring-[#7C4DFF] cursor-pointer"
                             />
                             <label htmlFor="remember" className="text-xs text-gray-500 font-bold cursor-pointer select-none">
-                                Keep me signed in
+                                Remember me
                             </label>
+                        </div>
+                        <div>
+                            <span className='text-xs cursor-pointer hover:underline text-blue-700'>Forget password?</span>
+                        </div>
                         </div>
 
                         {/* Submit Control Button */}
                         <button
                             type="submit"
-                            className="w-full h-12 bg-gradient-to-r from-[#7C4DFF] to-[#6236ff] text-white font-black text-xs uppercase tracking-widest rounded-xl shadow-[0_6px_24px_rgba(124,77,255,0.25)] hover:shadow-[0_6px_30px_rgba(124,77,255,0.4)] hover:brightness-110 active:scale-[0.98] transition-all mt-2"
+                            className="w-full h-12 cursor-pointer bg-gradient-to-r from-[#7C4DFF] to-[#6236ff] text-white font-black text-xs uppercase tracking-widest rounded-xl shadow-[0_6px_24px_rgba(124,77,255,0.25)] hover:shadow-[0_6px_30px_rgba(124,77,255,0.4)] hover:brightness-110 active:scale-[0.98] transition-all mt-2"
                         >
-                            Sign In Securely
+                            Login
                         </button>
                     </form>
 
                     {/* Social Divider */}
                     <div className="relative my-7 text-center">
                         <hr className="border-gray-100" />
-                        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-4 text-[10px] font-black tracking-widest text-gray-300 uppercase">OR</span>
+                        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-4 text-[10px] font-black tracking-widest text-gray-300 uppercase">------OR-----</span>
                     </div>
 
                     {/* Google Button */}
                     <button
                         type="button"
-                        className="w-full flex items-center justify-center gap-3 rounded-xl border border-pink-100 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-sm transition-all duration-300 hover:border-pink-300 hover:shadow-md hover:bg-pink-50 active:scale-[0.98]"
+                        className="w-full cursor-pointer flex items-center justify-center gap-3 rounded-xl border border-pink-100 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-sm transition-all duration-300 hover:border-pink-300 hover:shadow-md hover:bg-pink-50 active:scale-[0.98]"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -194,8 +201,8 @@ const Login = () => {
                     </button>
 
                     {/* Bottom Footer Navigation */}
-                    <p className="text-center text-xs text-gray-400 font-bold mt-8">
-                        New to our circle? <a href="#signup" className="text-[#FF2E63] hover:underline font-black tracking-tight">Create Account</a>
+                    <p className="text-center text-xs text-gray-400  mt-8">
+                        New to our Community? < Link to={'/register'} className="text-blue-500 hover:underline ">Create Account</Link>
                     </p>
 
                 </div>

@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home";
 import AdminDashboard from "../Layouts/AdminLayout/AdminDashboard";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
 
 
 export const router = createBrowserRouter([
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
         {
           path:'/login',
           Component: Login
+        },
+        {
+          path:'/register',
+          Component: Register
         }
 
     ]
