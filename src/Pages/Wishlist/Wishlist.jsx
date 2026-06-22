@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { BsCartCheck } from "react-icons/bs";
+import { MdDelete } from "react-icons/md";
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([
@@ -68,7 +70,7 @@ const Wishlist = () => {
             {wishlist.map((item) => (
               <div 
                 key={item.id} 
-                className="bg-white rounded-2xl p-4 sm:p-5 border border-gray-100/40 shadow-[0_12px_32px_-8px_rgba(126,70,252,0.06)] hover:shadow-[0_16px_40px_-6px_rgba(126,70,252,0.12)] transition-all duration-300 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 group"
+                className="bg-white rounded-2xl p-4 sm:p-5 border border-gray-100/40  shadow-xl transition-all duration-300 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 group"
               >
                 
                 {/* LEFT SIDE: IMAGE & METADATA CONTENT PACK */}
@@ -115,26 +117,24 @@ const Wishlist = () => {
                   </div>
 
                   {/* Actions Package */}
-                  <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="flex items-center gap-4 sm:gap-3">
+
+                       <button className='text-3xl text-green-500 cursor-pointer hover:scale-110 transition-all' >
+                      <BsCartCheck />
+                    </button>
+
+
+
+
                     <button 
                       onClick={() => removeItem(item.id)}
-                      className="text-[11px] font-bold text-gray-400 hover:text-rose-500 transition-colors px-2 py-2 uppercase tracking-wider"
+                      className="text-3xl font-bold cursor-pointer hover:scale-110 transition-all text-rose-500  px-2 py-2 uppercase tracking-wider"
                       title="Remove Item"
                     >
-                      Remove
+                      <MdDelete />
                     </button>
                     
-                    <button 
-                      disabled={!item.inStock}
-                      style={{ backgroundColor: item.inStock ? '#7E46FC' : '' }}
-                      className={`h-10 px-5 sm:px-6 text-xs font-bold uppercase tracking-widest rounded-xl transition-all text-white
-                        ${item.inStock 
-                          ? 'hover:brightness-110 active:scale-[0.98] shadow-[0_4px_16px_rgba(126,70,252,0.2)] hover:shadow-[0_6px_20px_rgba(126,70,252,0.35)]' 
-                          : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                        }`}
-                    >
-                      Add To Bag
-                    </button>
+                    
                   </div>
 
                 </div>
