@@ -5,6 +5,7 @@ import AdminDashboard from "../Layouts/AdminLayout/AdminDashboard";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import Wishlist from "../Pages/Wishlist/Wishlist";
 
 
 export const router = createBrowserRouter([
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
         {
           path:'/register',
           Component: Register
+        },
+        {
+          path:'/wishlist',
+          Component: Wishlist
         }
 
     ]
