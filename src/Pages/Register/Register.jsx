@@ -168,7 +168,7 @@ const Register = () => {
 
           {/* Bottom Redirect */}
           <p className="text-center text-xs text-gray-400  mt-6">
-            Already Registered? <a href="#login" className="text-blue-500 underline ">Log in</a>
+            Already Registered? <Link to={'/login'} className="text-blue-500 underline ">Log in</Link>
           </p>
         </div>
 
