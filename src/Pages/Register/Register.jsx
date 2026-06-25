@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { Link } from 'react-router';
 import logo from '/logo-footer.png'
+import AuthContext from '../../Context/AuthContext';
 
 const Register = () => {
+
+
+  const {handleGoogle,user,loading} = use(AuthContext);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -23,6 +27,12 @@ const Register = () => {
     e.preventDefault();
     console.log("Initializing Registration Pipeline...", formData);
   };
+
+  const handleGoogleRegister = ()=>{
+    handleGoogle()
+    .then(res => {console.log(res);})
+    .catch(err => {console.log(err);})
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FFF6F6] via-[#FAF6FF] to-[#F1E4FF] flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans select-none antialiased">
@@ -153,7 +163,7 @@ const Register = () => {
           {/* OFFICIAL STANDARD GOOGLE SIGN-UP BUTTON */}
           <button 
             type="button" 
-            onClick={() => alert("Connecting Official Google Identity Provider Hub...")}
+            onClick={handleGoogleRegister}
             className="w-full h-11 cursor-pointer bg-white border border-[#DADCE0] hover:bg-[#F8F9FA] active:bg-[#F1F3F4] text-[#3C4043] font-medium text-sm rounded-xl flex items-center justify-center gap-3 transition-colors shadow-sm px-4"
             style={{ fontFamily: "'Roboto', sans-serif" }}
           >
