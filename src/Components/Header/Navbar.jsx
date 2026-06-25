@@ -1,13 +1,26 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, use } from 'react';
 import { Link } from 'react-router';
 import { Menu, X, Search, User, Heart, ShoppingCart, ChevronDown } from 'lucide-react';
-import logo from '/public/logo.png'
+import logo from '/logo.png'
+import AuthContext from '../../Context/AuthContext';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const mobileSearchRef = useRef(null);
+    const [showDropdown, setShowDropdown] = useState(false);
 
+    const { user, loading } = use(AuthContext);
+    console.log(user);
+
+
+    
+
+    const handleLogout = () => {
+        // আপনার লগআউট লজিক এখানে লিখবেন (যেমন: signOut(auth) ইত্যাদি)
+        console.log("Logged out");
+        setShowDropdown(false); // মেনু বন্ধ করার জন্য
+    };
     // Focus mobile input field when top search drawer opens
     useEffect(() => {
         if (isSearchOpen && mobileSearchRef.current) {
@@ -59,7 +72,7 @@ const Navbar = () => {
 
                 {/* Central Search Bar - Only Visible on Desktop (>= md) to match your image */}
                 <div className="hidden md:flex flex-1 max-w-2xl  items-center bg-[#F5F5F5] rounded-md pl-4 pr-1.5 py-1.5 mx-4">
-                   
+
                     <input
                         type="text"
                         placeholder="I am looking for..."
@@ -82,9 +95,39 @@ const Navbar = () => {
                     </button>
 
                     {/* Router Links for both Mobile and Desktop */}
-                    <Link to="/login" className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                        <User className="h-6 w-6 stroke-[1.5]" />
-                    </Link>
+                    {
+                        user ? (
+                            <div className="relative">
+                                {/* ইউজারের প্রোফাইল ইমেজ বাটন */}
+                                <button
+                                    onClick={() => setShowDropdown(!showDropdown)}
+                                    className="focus:outline-none"
+                                >
+                                    <img
+                                        src={user.photoURL}
+                                        alt="User Profile"
+                                        className="h-8 w-8 rounded-full object-cover cursor-pointer border border-gray-200 hover:opacity-80 transition-opacity"
+                                    />
+                                </button>
+
+                                {/* ড্রপডাউন মেনু (শুধু ট্রু হলেই দেখাবে) */}
+                                {showDropdown && (
+                                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-100">
+                                        <button
+                                            onClick={handleLogout}
+                                            className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors"
+                                        >
+                                            Logout
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <Link to="/login" className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                                <User className="h-6 w-6 stroke-[1.5]" />
+                            </Link>
+                        )
+                    }
 
                     <Link to="/wishlist" className="relative p-2 hover:bg-gray-100 rounded-full transition-colors">
                         <Heart className="h-6 w-6 stroke-[1.5]" />
@@ -169,9 +212,9 @@ const Navbar = () => {
                 />
             )}
 
-            
+
         </nav>
-        
+
     );
 };
 
