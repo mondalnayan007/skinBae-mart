@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router';
-import logo from '/logo-footer.png' 
+import React, { use, useState } from 'react';
+import { Link, useNavigate } from 'react-router';
+import logo from '/logo-footer.png'
+import AuthContext from '../../Context/AuthContext';
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [showPassword, setShowPassword] = useState(false);
+    const {handleLogin} = use(AuthContext);
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -12,7 +16,16 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Secure Authentication Engine Triggered...", formData);
+        const name = formData.fullName;
+        const email = formData.email;
+        const password = formData.password;
+        const terms = formData.agreeTerms;
+        console.log(name, email, password, terms);
+        handleLogin(email, password)
+            .then(res => {
+                navigate('/') 
+                console.log(res); })
+            .catch(err => { console.log(err); })
     };
 
     return (
@@ -105,7 +118,7 @@ const Login = () => {
                                 <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest transition-colors group-focus-within:text-[#7C4DFF]">
                                     Password
                                 </label>
-                               
+
                             </div>
                             <div className="relative">
                                 <input
@@ -140,18 +153,18 @@ const Login = () => {
                         {/* Remember Me Checkbox Selector */}
                         <div className='flex justify-between'>
                             <div className="flex items-center gap-2.5 mt-1">
-                            <input
-                                type="checkbox"
-                                id="remember"
-                                className="w-4 h-4 text-[#7C4DFF] border-gray-200 rounded-lg focus:ring-[#7C4DFF] cursor-pointer"
-                            />
-                            <label htmlFor="remember" className="text-xs text-gray-500 font-bold cursor-pointer select-none">
-                                Remember me
-                            </label>
-                        </div>
-                        <div>
-                            <span className='text-xs cursor-pointer hover:underline text-blue-700'>Forget password?</span>
-                        </div>
+                                <input
+                                    type="checkbox"
+                                    id="remember"
+                                    className="w-4 h-4 text-[#7C4DFF] border-gray-200 rounded-lg focus:ring-[#7C4DFF] cursor-pointer"
+                                />
+                                <label htmlFor="remember" className="text-xs text-gray-500 font-bold cursor-pointer select-none">
+                                    Remember me
+                                </label>
+                            </div>
+                            <div>
+                                <span className='text-xs cursor-pointer hover:underline text-blue-700'>Forget password?</span>
+                            </div>
                         </div>
 
                         {/* Submit Control Button */}

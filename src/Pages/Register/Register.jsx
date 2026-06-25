@@ -31,7 +31,9 @@ const Register = () => {
     const terms = formData.agreeTerms;
     console.log(name,email,password,terms);
     handleRegister(email,password)
-    .then(res => {console.log(res);})
+    .then(res => {
+    
+      console.log(res);})
     .catch(err =>{console.log(err);})
     
   };
