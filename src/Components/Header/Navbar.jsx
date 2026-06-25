@@ -10,16 +10,16 @@ const Navbar = () => {
     const mobileSearchRef = useRef(null);
     const [showDropdown, setShowDropdown] = useState(false);
 
-    const { user, loading } = use(AuthContext);
+    const { user, loading,handleLogout } = use(AuthContext);
     console.log(user);
 
 
     
 
-    const handleLogout = () => {
-        // আপনার লগআউট লজিক এখানে লিখবেন (যেমন: signOut(auth) ইত্যাদি)
-        console.log("Logged out");
-        setShowDropdown(false); // মেনু বন্ধ করার জন্য
+    const handleSignout = () => {
+       handleLogout()
+       .then(res=>{console.log(res);})
+       .catch(err =>{console.log(err);})
     };
     // Focus mobile input field when top search drawer opens
     useEffect(() => {
@@ -114,7 +114,7 @@ const Navbar = () => {
                                 {showDropdown && (
                                     <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-100">
                                         <button
-                                            onClick={handleLogout}
+                                            onClick={handleSignout}
                                             className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors"
                                         >
                                             Logout
