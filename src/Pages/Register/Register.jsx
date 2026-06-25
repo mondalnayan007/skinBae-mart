@@ -6,7 +6,7 @@ import AuthContext from '../../Context/AuthContext';
 const Register = () => {
 
 
-  const {handleGoogle,user,loading} = use(AuthContext);
+  const {handleGoogle,user,loading,handleRegister} = use(AuthContext);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -25,7 +25,15 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Initializing Registration Pipeline...", formData);
+    const name = formData.fullName;
+    const email = formData.email;
+    const password = formData.password;
+    const terms = formData.agreeTerms;
+    console.log(name,email,password,terms);
+    handleRegister(email,password)
+    .then(res => {console.log(res);})
+    .catch(err =>{console.log(err);})
+    
   };
 
   const handleGoogleRegister = ()=>{
