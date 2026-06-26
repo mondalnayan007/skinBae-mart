@@ -48,10 +48,9 @@ const Reviews = () => {
   const [dragStart, setDragStart] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const [exitDirection, setExitDirection] = useState(null); // 'left' | 'right' | null
+  const [exitDirection, setExitDirection] = useState(null); 
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // কারেন্ট একটিভ কার্ড এবং নেক্সট বেস কার্ড ডিটেকশন লজিক
   const activeReview = reviews[0];
   const nextReview = reviews[1];
 
@@ -70,14 +69,13 @@ const Reviews = () => {
     if (!isDragging || isAnimating) return;
     setIsDragging(false);
 
-    const threshold = 130; // থ্রেশহোল্ড লিমিট এরিয়া
+    const threshold = 130; 
 
     if (dragOffset > threshold) {
       triggerVanish('right');
     } else if (dragOffset < -threshold) {
       triggerVanish('left');
     } else {
-      // লিমিট পার না হলে স্প্রিং ব্যাক করে নিজের জায়গায় ফিরে যাবে
       setDragOffset(0);
     }
   };
@@ -86,10 +84,7 @@ const Reviews = () => {
     setIsAnimating(true);
     setExitDirection(direction);
 
-    // ৩৫০ms এর মধ্যে মেইন কার্ডটি স্ক্রিন থেকে একদম ভ্যানিশ হয়ে যাবে
     setTimeout(() => {
-      // অ্যানিমেশন সম্পন্ন হওয়ার পর ট্রানজিশন ছাড়াই স্টেট এবং অফসেট একসাথে ক্লিয়ার করা হলো
-      // এর ফলে কোনো বাউন্স বা ফ্লিকারিং গ্লিচ হবে না
       setReviews((prev) => {
         const updated = [...prev];
         const first = updated.shift();
@@ -116,7 +111,7 @@ const Reviews = () => {
   const nextReviewPreview = reviews[1];
 
   return (
-    <div className="min-h-screen bg-[#FFFFFF] text-[#1D1D1F] antialiased p-4 sm:p-8 lg:p-12 select-none flex flex-col justify-center overflow-hidden font-sans">
+    <div className=" bg-[#FFFFFF] text-[#1D1D1F] antialiased p-4 sm:p-8 select-none flex flex-col justify-center overflow-hidden font-sans">
       <div className="max-w-6xl mx-auto w-full relative">
         
         {/* EDITORIAL CHAMPAGNE HEADER */}
@@ -146,43 +141,58 @@ const Reviews = () => {
             </svg>
           </button>
 
-          {/* BACKGROUND SIDE PREVIEWS */}
-          <div className="absolute left-[-32%] sm:left-[-48%] w-[85%] h-[340px] bg-gradient-to-br from-[#FDFBF7] to-[#F5EFE6] rounded-[24px] p-6 border border-[#EAE3D2]/50 opacity-70 blur-[1px] scale-[0.85] pointer-events-none transition-all duration-500 hidden sm:flex flex-col justify-between shadow-[0_12px_32px_rgba(197,168,128,0.05)]">
+          {/* ======================================================== */}
+          {/* BACKGROUND SIDE PREVIEWS (60% TOP / 20% BOTTOM VISIBILITY WITH BLUR) */}
+          {/* ======================================================== */}
+          
+          {/* LEFT SIDE PREVIEW */}
+          <div className="absolute left-[-42%] sm:left-[-58%] w-[85%] h-[370px] bg-[#F8DBE2] rounded-[24px] p-6 border border-gray-100/40 opacity-60 blur-[2px] backdrop-blur-sm scale-[0.88] -rotate-[6deg] origin-bottom-right pointer-events-none transition-all duration-500 hidden sm:flex flex-col justify-between shadow-[0_12px_32px_rgba(197,168,128,0.03)]">
             <div>
-              <div className="w-12 h-2.5 bg-[#C5A880]/15 rounded-full mb-4"></div>
-              <p className="text-[11px] text-gray-400 font-light line-clamp-4 leading-relaxed">"{prevReviewPreview.description}"</p>
+              <div className="flex items-center gap-0.5 mb-5 opacity-40">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-3.5 h-3.5 text-[#C5A880]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                ))}
+              </div>
+              <p className="text-xs font-light text-gray-700 leading-relaxed line-clamp-5">"{prevReviewPreview.description}"</p>
             </div>
             <div className="flex items-center gap-3 pt-3 border-t border-gray-200/40">
               <div className="w-8 h-8 rounded-full bg-gray-100 overflow-hidden">
-                <img src={prevReviewPreview.image} alt="" className="w-full h-full object-cover grayscale opacity-80" />
+                <img src={prevReviewPreview.image} alt="" className="w-full h-full object-cover grayscale opacity-70" />
               </div>
-              <span className="text-xs font-medium text-gray-500">{prevReviewPreview.name}</span>
+              <span className="text-xs font-medium text-gray-600">{prevReviewPreview.name}</span>
             </div>
           </div>
 
-          <div className="absolute right-[-32%] sm:right-[-48%] w-[85%] h-[340px] bg-gradient-to-br from-[#FDFBF7] to-[#F5EFE6] rounded-[24px] p-6 border border-[#EAE3D2]/50 opacity-70 blur-[1px] scale-[0.85] pointer-events-none transition-all duration-500 hidden sm:flex flex-col justify-between shadow-[0_12px_32px_rgba(197,168,128,0.05)]">
+          {/* RIGHT SIDE PREVIEW */}
+          <div className="absolute right-[-42%] sm:right-[-58%] w-[85%] h-[370px] bg-[#F8DBE2] rounded-[24px] p-6 border border-gray-100/40 opacity-60 blur-[2px] backdrop-blur-sm scale-[0.88] rotate-[6deg] origin-bottom-left pointer-events-none transition-all duration-500 hidden sm:flex flex-col justify-between shadow-[0_12px_32px_rgba(197,168,128,0.03)]">
             <div>
-              <div className="w-12 h-2.5 bg-[#C5A880]/15 rounded-full mb-4"></div>
-              <p className="text-[11px] text-gray-400 font-light line-clamp-4 leading-relaxed">"{nextReviewPreview.description}"</p>
+              <div className="flex items-center gap-0.5 mb-5 opacity-40">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-3.5 h-3.5 text-[#C5A880]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                ))}
+              </div>
+              <p className="text-xs font-light text-gray-700 leading-relaxed line-clamp-5">"{nextReviewPreview.description}"</p>
             </div>
             <div className="flex items-center gap-3 pt-3 border-t border-gray-200/40">
               <div className="w-8 h-8 rounded-full bg-gray-100 overflow-hidden">
-                <img src={nextReviewPreview.image} alt="" className="w-full h-full object-cover grayscale opacity-80" />
+                <img src={nextReviewPreview.image} alt="" className="w-full h-full object-cover grayscale opacity-70" />
               </div>
-              <span className="text-xs font-medium text-gray-500">{nextReviewPreview.name}</span>
+              <span className="text-xs font-medium text-gray-600">{nextReviewPreview.name}</span>
             </div>
           </div>
 
           {/* ======================================================== */}
-          {/* UNDERLAY BASE CARD (আপনার রিকোয়েস্ট অনুযায়ী প্রোপার কালার ও অপাসিটি সহ) */}
+          {/* UNDERLAY BASE CARD */}
           {/* ======================================================== */}
           <div 
             style={{
-              // ওপরের কার্ড সরানোর সাথে সাথে এটি ফুল ১.০০ স্কেলে স্মুথলি প্রোমোট হবে
               transform: `scale(${Math.min(0.96 + Math.abs(dragOffset) * 0.0003, 1)})`,
               transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)'
             }}
-            // প্রোপার কালার মেইনটেইন করার জন্য সরাসরি আপনার স্ট্যান্ডার্ড সলিড থিম কালার দেওয়া হলো
             className="absolute w-full h-[380px] bg-[#F8DBE2] rounded-[24px] p-6 sm:p-8 border border-gray-100/80 shadow-[0_12px_32px_rgba(197,168,128,0.05)] z-10 flex flex-col justify-between pointer-events-none"
           >
             <div>
@@ -209,9 +219,8 @@ const Reviews = () => {
           </div>
 
           {/* ======================================================== */}
-          {/* PRIMARY ACTIVE INTERACTIVE CARD (TINDER SWIPE - FIXED) */}
+          {/* PRIMARY ACTIVE INTERACTIVE CARD */}
           {/* ======================================================== */}
-          {/* কিউই (key) হিসেবে আইডি ব্যবহার করা হয়েছে যাতে কার্ডটি ভ্যানিশ হওয়ার পর রিঅ্যাক্ট একে সম্পূর্ণ নতুন এলিমেন্ট ভাবে এবং পুরাতন অফসেট টেনে না আনে */}
           <div
             key={activeReview.id}
             onMouseDown={handleMouseDown}
