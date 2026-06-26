@@ -5,6 +5,7 @@ import PopularCategories from '../../Components/PopularCategories';
 import FeatureBanner from '../../Components/FeatureBanner';
 import HeroSection from '../../Components/Header/HeroSection';
 import TopBrands from '../../Components/TopBrands';
+import Reviews from '../../Components/Reviews/Reviews';
 
 const Home = () => {
   const products = useLoaderData() || [];
@@ -148,6 +149,10 @@ const Home = () => {
       
       <div>
         <TopBrands></TopBrands>
+      </div>
+
+      <div>
+        <Reviews></Reviews>
       </div>
 
     </div>
