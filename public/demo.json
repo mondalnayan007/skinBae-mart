@@ -1,0 +1,1003 @@
+[
+  
+  {
+    "title": "Maybelline Fit Me Matte + Poreless Liquid Foundation",
+    "brand": "Maybelline",
+    "size": "30ml",
+    "sku": "MBL-FM-128",
+    "category": "Makeup",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 15,
+      "message": "Only 15 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 950.00,
+      "originalPrice": 1200.00,
+      "savings": 250.00,
+      "discountPercentage": 21
+    },
+    "briefDescription": [
+      "Ultra-lightweight foundation absorbs shine for a natural matte finish.",
+      "Matches skin tone and binds seamlessly with normal to oily skin.",
+      "Does not clog pores and is oil-free.",
+      "Available in diverse shades for South Asian skin tones."
+    ],
+    "tags": ["Makeup", "Foundation", "Matte", "Maybelline", "Face"],
+    "images": "https://images.unsplash.com/photo-1631214524020-5e18d9765176?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "L'Oreal Paris Voluminous Lash Paradise Mascara",
+    "brand": "L'Oreal",
+    "size": "8.5ml",
+    "sku": "LRL-LP-01",
+    "category": "Makeup",
+    "status": "New Arrivals",
+    "availability": {
+      "inStock": true,
+      "stockCount": 22,
+      "message": "Only 22 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1450.00,
+      "originalPrice": 1750.00,
+      "savings": 300.00,
+      "discountPercentage": 17
+    },
+    "briefDescription": [
+      "Delivers voluptuous volume and intense length.",
+      "Soft wavy bristle brush holds maximum formula for a dramatic lash lift.",
+      "Smudge-proof, flake-proof, and long-wearing.",
+      "Infused with floral oil to condition lashes."
+    ],
+    "tags": ["Makeup", "Mascara", "Eyes", "Loreal", "Volume"],
+    "images": "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "The Ordinary High-Adherence Silicone Primer",
+    "brand": "The Ordinary",
+    "size": "30ml",
+    "sku": "ORD-HASP-30",
+    "category": "Makeup",
+    "status": "Regular",
+    "availability": {
+      "inStock": true,
+      "stockCount": 8,
+      "message": "Only 8 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1150.00,
+      "originalPrice": 1350.00,
+      "savings": 200.00,
+      "discountPercentage": 15
+    },
+    "briefDescription": [
+      "Uses advanced adaptive silicones to act as a matte, hydrating primer.",
+      "Blurs imperfections and makes makeup look higher-definition.",
+      "Formulated to ensure longevity of surface makeup layers.",
+      "Non-comedogenic formula suitable for all skin types."
+    ],
+    "tags": ["Makeup", "Primer", "The Ordinary", "Face Base"],
+    "images": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "MAC Retro Matte Lipstick - Ruby Woo",
+    "brand": "MAC",
+    "size": "3g",
+    "sku": "MAC-RM-RW",
+    "category": "Makeup",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": false,
+      "stockCount": 0,
+      "message": "Out of stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 2450.00,
+      "originalPrice": 2450.00,
+      "savings": 0.00,
+      "discountPercentage": 0
+    },
+    "briefDescription": [
+      "Iconic long-wearing lipstick with intense color payoff.",
+      "Completely matte finish that stays vivid all day.",
+      "Features a non-feathering, classic retro red hue.",
+      "The ultimate globally recognized statement lip product."
+    ],
+    "tags": ["Makeup", "Lipstick", "MAC", "Ruby Woo", "Lips"],
+    "images": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500&auto=format&fit=crop&q=80"
+  },
+
+  
+  {
+    "title": "COSRX Advanced Snail 96 Mucin Power Essence",
+    "brand": "COSRX",
+    "size": "100ml",
+    "sku": "CSX-SN-96",
+    "category": "Skin",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 45,
+      "message": "Only 45 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1950.00,
+      "originalPrice": 2400.00,
+      "savings": 450.00,
+      "discountPercentage": 19
+    },
+    "briefDescription": [
+      "Lightweight essence absorbs quickly into skin for a natural glow.",
+      "Contains 96.3% Snail Secretion Filtrate to repair and soothe.",
+      "Improves skin elasticity and protects against moisture loss.",
+      "Perfect for reducing hyperpigmentation and fine lines."
+    ],
+    "tags": ["Skin", "Essence", "COSRX", "Snail Mucin", "K-Beauty"],
+    "images": "https://images.unsplash.com/photo-1608248597481-496100c8c836?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "CeraVe Moisturizing Cream for Oily to Normal Skin",
+    "brand": "CeraVe",
+    "size": "340g",
+    "sku": "CRV-MC-340",
+    "category": "Skin",
+    "status": "Regular",
+    "availability": {
+      "inStock": true,
+      "stockCount": 12,
+      "message": "Only 12 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 2200.00,
+      "originalPrice": 2500.00,
+      "savings": 300.00,
+      "discountPercentage": 12
+    },
+    "briefDescription": [
+      "Provides 24-hour hydration with continuous release technology.",
+      "Formulated with 3 essential ceramides to repair barrier.",
+      "Hyaluronic acid base retains natural skin moisture.",
+      "Non-comedogenic, fragrance-free, and oil-free formula."
+    ],
+    "tags": ["Skin", "Moisturizer", "CeraVe", "Ceramides", "Dry Skin"],
+    "images": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Beauty of Joseon Relief Sun : Rice + Probiotics SPF50+",
+    "brand": "Beauty of Joseon",
+    "size": "50ml",
+    "sku": "BOJ-RS-50",
+    "category": "Skin",
+    "status": "New Arrivals",
+    "availability": {
+      "inStock": true,
+      "stockCount": 60,
+      "message": "Only 60 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1650.00,
+      "originalPrice": 2100.00,
+      "savings": 450.00,
+      "discountPercentage": 21
+    },
+    "briefDescription": [
+      "Organic lightweight and creamy sunscreen comfortable on skin.",
+      "Contains 30% Rice Extract and Grain Fermented Extracts.",
+      "Provides robust SPF50+ PA++++ chemical UV filters.",
+      "No white cast, leaves a moist, healthy glass skin finish."
+    ],
+    "tags": ["Skin", "Sunscreen", "Beauty of Joseon", "SPF", "K-Beauty"],
+    "images": "https://images.unsplash.com/photo-1556229174-5e42a09e45af?w=500&auto=format&fit=crop&q=80"
+  },
+
+  
+  {
+    "title": "L'Oreal Paris Elvive Extraordinary Oil Shampoo",
+    "brand": "L'Oreal",
+    "size": "400ml",
+    "sku": "LRL-EV-400",
+    "category": "Hair",
+    "status": "Regular",
+    "availability": {
+      "inStock": true,
+      "stockCount": 30,
+      "message": "Only 30 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 750.00,
+      "originalPrice": 950.00,
+      "savings": 200.00,
+      "discountPercentage": 21
+    },
+    "briefDescription": [
+      "Enriched with 6 precious flower oils for complete hair nourishment.",
+      "Transforms dry, lifeless locks into soft, lustrous, shiny hair.",
+      "Cleanses deep while maintaining optimal scalp moisture balance.",
+      "Reduces frizz and unmanageable flyaways drastically."
+    ],
+    "tags": ["Hair", "Shampoo", "Loreal", "Dry Hair", "Elvive"],
+    "images": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "The Body Shop Ginger Anti-Dandruff Shampoo",
+    "brand": "The Body Shop",
+    "size": "400ml",
+    "sku": "TBS-GNG-400",
+    "category": "Hair",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 6,
+      "message": "Only 6 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 2150.00,
+      "originalPrice": 2650.00,
+      "savings": 500.00,
+      "discountPercentage": 19
+    },
+    "briefDescription": [
+      "Blended with ginger essential oil from Sri Lanka and birch bark extract.",
+      "Gently clears loose flakes and targets irritated scalps.",
+      "Leaves weak hair fibers feeling strong, refreshed, and healthy.",
+      "Made with 90% ingredients of natural origin."
+    ],
+    "tags": ["Hair", "Shampoo", "The Body Shop", "Anti Dandruff", "Ginger"],
+    "images": "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Olaplex No.3 Hair Perfector Treatment",
+    "brand": "Olaplex",
+    "size": "100ml",
+    "sku": "OLP-HP-03",
+    "category": "Hair",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 11,
+      "message": "Only 11 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 3200.00,
+      "originalPrice": 3800.00,
+      "savings": 600.00,
+      "discountPercentage": 16
+    },
+    "briefDescription": [
+      "A global bestseller at-home treatment that repairs compromised bonds.",
+      "Restores structural integrity, strength, texture, and visual health.",
+      "PH balanced formula perfect for heat-damaged or colored hair.",
+      "Free of DEA, Aldehydes, Formaldehyde, and parabens."
+    ],
+    "tags": ["Hair", "Treatment", "Olaplex", "Repair", "Damaged Hair"],
+    "images": "https://images.unsplash.com/photo-1608248597481-496100c8c836?w=500&auto=format&fit=crop&q=80"
+  },
+
+  
+  {
+    "title": "Nivea Pearl & Beauty Anti-Perspirant Roll-On",
+    "brand": "Nivea",
+    "size": "50ml",
+    "sku": "NIV-PB-50",
+    "category": "Personal care",
+    "status": "Regular",
+    "availability": {
+      "inStock": true,
+      "stockCount": 40,
+      "message": "Only 40 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 380.00,
+      "originalPrice": 450.00,
+      "savings": 70.00,
+      "discountPercentage": 16
+    },
+    "briefDescription": [
+      "Provides up to 48-hour effective anti-perspirant sweat protection.",
+      "Infused with natural pearl extracts to even out underarm tone.",
+      "Ensures beautiful, smooth underarms with no alcohol contents.",
+      "Dermatologically tested and approved for everyday application."
+    ],
+    "tags": ["Personal care", "Roll On", "Nivea", "Deodorant", "Underarm"],
+    "images": "https://images.unsplash.com/photo-1619551483344-f99ea3c9c82e?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Cetaphil Gentle Skin Cleanser for Face & Body",
+    "brand": "Cetaphil",
+    "size": "250ml",
+    "sku": "CET-GSC-250",
+    "category": "Personal care",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 18,
+      "message": "Only 18 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1450.00,
+      "originalPrice": 1800.00,
+      "savings": 350.00,
+      "discountPercentage": 19
+    },
+    "briefDescription": [
+      "Clinically proven ultra-gentle formula preserves natural hydration barriers.",
+      "Ideal for sensitive, dry, or irritation-prone eczema skin conditions.",
+      "Can be used with or without water for versatile cleansing.",
+      "Defends against 5 core signs of skin sensitivity elements."
+    ],
+    "tags": ["Personal care", "Cleanser", "Cetaphil", "Sensitive Skin"],
+    "images": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Dettol Original Germ Protection Body Wash",
+    "brand": "Dettol",
+    "size": "250ml",
+    "sku": "DTL-BW-250",
+    "category": "Personal care",
+    "status": "Regular",
+    "availability": {
+      "inStock": true,
+      "stockCount": 50,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 290.00,
+      "originalPrice": 350.00,
+      "savings": 60.00,
+      "discountPercentage": 17
+    },
+    "briefDescription": [
+      "Provides 100% better protection against illness-causing germs.",
+      "pH-balanced formula ensures standard daily health sanitation.",
+      "Infused with pine essence for long lasting clean odor.",
+      "Recommended by medical authorities for regular family bathing."
+    ],
+    "tags": ["Personal care", "Body Wash", "Dettol", "Hygiene"],
+    "images": "https://images.unsplash.com/photo-1601612628452-9e99ced43524?w=500&auto=format&fit=crop&q=80"
+  },
+
+  
+  {
+    "title": "Johnson's Baby No More Tears Shampoo",
+    "brand": "Johnson & Johnson",
+    "size": "200ml",
+    "sku": "JNJ-BS-200",
+    "category": "Mom & Baby",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 25,
+      "message": "Only 25 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 450.00,
+      "originalPrice": 550.00,
+      "savings": 100.00,
+      "discountPercentage": 18
+    },
+    "briefDescription": [
+      "No More Tears formula is as gentle to the eyes as pure water.",
+      "Hypoallergenic, pediatrician-tested, and completely paraben-free.",
+      "Gently cleanses fine baby hair and sensitive scalp skin layers.",
+      "Leaves infant hair smelling fresh, clean, and shiny."
+    ],
+    "tags": ["Mom & Baby", "Baby Shampoo", "Johnsons", "Kids Care"],
+    "images": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Aveeno Baby Daily Moisture Lotion",
+    "brand": "Aveeno",
+    "size": "226g",
+    "sku": "AVN-BML-226",
+    "category": "Mom & Baby",
+    "status": "New Arrivals",
+    "availability": {
+      "inStock": true,
+      "stockCount": 14,
+      "message": "Only 14 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1650.00,
+      "originalPrice": 1950.00,
+      "savings": 300.00,
+      "discountPercentage": 15
+    },
+    "briefDescription": [
+      "Nourishing colloidal oatmeal protects baby's sensitive surface barrier.",
+      "Provides moisture coverage for a full 24-hour cycle.",
+      "Non-greasy, fast absorbing, and fragrance-free formulation.",
+      "Perfect protective cream to prevent dry skin chapping."
+    ],
+    "tags": ["Mom & Baby", "Baby Lotion", "Aveeno", "Moisturizer"],
+    "images": "https://images.unsplash.com/photo-1556229174-5e42a09e45af?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Palmer's Cocoa Butter Stretch Marks Massage Lotion",
+    "brand": "Palmer's",
+    "size": "250ml",
+    "sku": "PLM-SML-250",
+    "category": "Mom & Baby",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": false,
+      "stockCount": 0,
+      "message": "Out of stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1550.00,
+      "originalPrice": 1550.00,
+      "savings": 0.00,
+      "discountPercentage": 0
+    },
+    "briefDescription": [
+      "Special pregnancy lotion targeting body stretch mark reductions.",
+      "Infused with pure Cocoa Butter, Shea Butter, and Vitamin E oil.",
+      "Improves skin elasticity and suppleness during maternity cycles.",
+      "Free from mineral oil, phthalates, and harsh artificial fragrances."
+    ],
+    "tags": ["Mom & Baby", "Pregnancy", "Palmers", "Stretch Marks", "Moms"],
+    "images": "https://images.unsplash.com/photo-1608248597481-496100c8c836?w=500&auto=format&fit=crop&q=80"
+  },
+
+  
+  {
+    "title": "Calvin Klein ONE Eau de Toilette Unisex",
+    "brand": "Calvin Klein",
+    "size": "100ml",
+    "sku": "CK-ONE-100",
+    "category": "Fragrance",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 6,
+      "message": "Only 6 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 4800.00,
+      "originalPrice": 6200.00,
+      "savings": 1400.00,
+      "discountPercentage": 23
+    },
+    "briefDescription": [
+      "Iconic clean, contemporary citrus scent profile designed for all.",
+      "Top notes blend green tea, papaya, and crisp bergamot accords.",
+      "Base notes close out with soft nutmeg, violet, and musk.",
+      "Timeless minimalist bottle profile structure."
+    ],
+    "tags": ["Fragrance", "Perfume", "CK", "Unisex", "Luxury"],
+    "images": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Dior Sauvage Eau de Parfum for Men",
+    "brand": "Dior",
+    "size": "100ml",
+    "sku": "DIOR-SVG-100",
+    "category": "Fragrance",
+    "status": "New Arrivals",
+    "availability": {
+      "inStock": true,
+      "stockCount": 3,
+      "message": "Only 3 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 16500.00,
+      "originalPrice": 18500.00,
+      "savings": 2000.00,
+      "discountPercentage": 11
+    },
+    "briefDescription": [
+      "Juicy and spirited Bergamot top notes deliver intense freshness.",
+      "Features rich woody trail amberwood, vanilla absolute, and vetiver.",
+      "Highly concentrated premium long-lasting trail throw duration.",
+      "The ultimate signature masculine luxury fragrance standard."
+    ],
+    "tags": ["Fragrance", "Premium", "Dior", "Sauvage", "Men Perfume"],
+    "images": "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "The Body Shop White Musk Fragrance Mist",
+    "brand": "The Body Shop",
+    "size": "100ml",
+    "sku": "TBS-WM-100",
+    "category": "Fragrance",
+    "status": "Regular",
+    "availability": {
+      "inStock": true,
+      "stockCount": 15,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 2250.00,
+      "originalPrice": 2700.00,
+      "savings": 450.00,
+      "discountPercentage": 17
+    },
+    "briefDescription": [
+      "Light, refreshing all-over body mist with signature musk tones.",
+      "Features symphony notes of aldehyde, jasmine, and cruelty-free musk.",
+      "Perfect casual layering everyday scent application formula.",
+      "Made with 95% ingredients derived safely from natural sources."
+    ],
+    "tags": ["Fragrance", "Body Mist", "The Body Shop", "White Musk"],
+    "images": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&auto=format&fit=crop&q=80"
+  },
+
+  
+  {
+    "title": "Calvin Klein Modern Cotton Stretch Boxer Briefs 3-Pack",
+    "brand": "Calvin Klein",
+    "size": "L",
+    "sku": "CK-BB-M3",
+    "category": "UNDERGARMENTS",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 12,
+      "message": "Only 12 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 2850.00,
+      "originalPrice": 3500.00,
+      "savings": 650.00,
+      "discountPercentage": 19
+    },
+    "briefDescription": [
+      "Premium breathable cotton blend fabrics provide all-day elasticity.",
+      "Features authentic Calvin Klein iconic repeating logo waistband.",
+      "Contoured pouch supports natural anatomical fit layouts.",
+      "Stays premium and shape-retentive through repeated wash cycles."
+    ],
+    "tags": ["UNDERGARMENTS", "Boxers", "Calvin Klein", "Men Wear"],
+    "images": "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Marks & Spencer Smooth Padded Seamless Bra",
+    "brand": "Marks & Spencer",
+    "size": "34B",
+    "sku": "MS-SB-34B",
+    "category": "UNDERGARMENTS",
+    "status": "Regular",
+    "availability": {
+      "inStock": true,
+      "stockCount": 8,
+      "message": "Only 8 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 2400.00,
+      "originalPrice": 2950.00,
+      "savings": 550.00,
+      "discountPercentage": 19
+    },
+    "briefDescription": [
+      "Seamless finish creates an invisible edge underneath tight garments.",
+      "Lightly padded cups offer modest contours and lifting structures.",
+      "Added flexible stretch materials improve comfort during heavy wear.",
+      "Wire-free support layout ensures no irritation chafing skin."
+    ],
+    "tags": ["UNDERGARMENTS", "Bra", "Marks and Spencer", "Seamless"],
+    "images": "https://images.unsplash.com/photo-1621184455862-c163dfb30e0f?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Jockey Breathable Microfiber Briefs",
+    "brand": "Jockey",
+    "size": "M",
+    "sku": "JKY-MB-02",
+    "category": "UNDERGARMENTS",
+    "status": "Regular",
+    "availability": {
+      "inStock": true,
+      "stockCount": 20,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 850.00,
+      "originalPrice": 1050.00,
+      "savings": 200.00,
+      "discountPercentage": 19
+    },
+    "briefDescription": [
+      "Advanced moisture-wicking technology handles active gym sweats.",
+      "Ultra-light micro mesh paneling introduces cooling continuous airflow.",
+      "Ergonomic tagless waist belt stops persistent low-back friction.",
+      "Low rise profile layout pairs with modern lower fit jeans."
+    ],
+    "tags": ["UNDERGARMENTS", "Briefs", "Jockey", "Comfort Fit"],
+    "images": "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=500&auto=format&fit=crop&q=80"
+  },
+
+  
+  {
+    "title": "COSRX Snail Repair Routine Combo Trio Pack",
+    "brand": "COSRX",
+    "size": "3 Items",
+    "sku": "CSX-CMB-01",
+    "category": "COMBO",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 10,
+      "message": "Only 10 combos left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 4200.00,
+      "originalPrice": 5200.00,
+      "savings": 1000.00,
+      "discountPercentage": 19
+    },
+    "briefDescription": [
+      "Curated 3-step solution: Includes Gel Cleanser, Essence, and Cream.",
+      "Synergistic snail mucin application speeds up skin hydration repair.",
+      "Saves significantly more money compared to single product checkouts.",
+      "Complete direct morning glass-skin template set package."
+    ],
+    "tags": ["COMBO", "Skincare Set", "COSRX", "Snail Kit", "Saving Pack"],
+    "images": "https://images.unsplash.com/photo-1608248597481-496100c8c836?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "The Body Shop Tea Tree Anti-Acne Routine Set",
+    "brand": "The Body Shop",
+    "size": "2 Items",
+    "sku": "TBS-CMB-TT",
+    "category": "COMBO",
+    "status": "New Arrivals",
+    "availability": {
+      "inStock": true,
+      "stockCount": 7,
+      "message": "Only 7 combos left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 2600.00,
+      "originalPrice": 3300.00,
+      "savings": 700.00,
+      "discountPercentage": 21
+    },
+    "briefDescription": [
+      "Contains Facial Wash (250ml) paired with Tea Tree Clearing Toner (250ml).",
+      "Targets oily production zones to dry out pimple breakouts.",
+      "Purifies pores thoroughly and balances baseline shine levels.",
+      "Infused with Community Fair Trade tea tree essential oil layers."
+    ],
+    "tags": ["COMBO", "The Body Shop", "Tea Tree", "Acne Combo"],
+    "images": "https://bk.shajgoj.com/storage/2018/05/bodyshop-teatree-toner-600.jpg"
+  },
+  {
+    "title": "CeraVe Cleanser + Moisturizer Dual Shield Combo",
+    "brand": "CeraVe",
+    "size": "2 Items",
+    "sku": "CRV-CMB-DS",
+    "category": "COMBO",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": false,
+      "stockCount": 0,
+      "message": "Out of stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 3800.00,
+      "originalPrice": 3800.00,
+      "savings": 0.00,
+      "discountPercentage": 0
+    },
+    "briefDescription": [
+      "Combines Foaming Facial Cleanser with Daily Moisturizing Cream base.",
+      "Delivers optimal ceramide restoration cycles to flaky skin profiles.",
+      "Dermatologist approved standard combo routine for dry sensitive faces.",
+      "Fragrance-free and hypoallergenic protection matrix."
+    ],
+    "tags": ["COMBO", "CeraVe", "Ceramides", "Dry Skin Fix"],
+    "images": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&auto=format&fit=crop&q=80"
+  },
+
+  
+  {
+    "title": "18K Gold Plated Minimalist Pendant Necklace",
+    "brand": "Aura Jewelry",
+    "size": "Adjustable",
+    "sku": "AUR-GN-01",
+    "category": "JEWELLERY",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 5,
+      "message": "Only 5 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1250.00,
+      "originalPrice": 1850.00,
+      "savings": 600.00,
+      "discountPercentage": 32
+    },
+    "briefDescription": [
+      "Features anti-tarnish protective coating over heavy premium brass.",
+      "Hypoallergenic nickel-free material layout protects skin from redness.",
+      "Elegant classic solitaire crystal pendant creates stunning focus look.",
+      "Includes premium hard-shell velvet luxury gift boxing packaging."
+    ],
+    "tags": ["JEWELLERY", "Necklace", "Gold Plated", "Pendant", "Women Accessory"],
+    "images": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "925 Sterling Silver Classic Hoop Earrings",
+    "brand": "Silver Line",
+    "size": "20mm",
+    "sku": "SLV-HE-20",
+    "category": "JEWELLERY",
+    "status": "New Arrivals",
+    "availability": {
+      "inStock": true,
+      "stockCount": 14,
+      "message": "Only 14 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 950.00,
+      "originalPrice": 1450.00,
+      "savings": 500.00,
+      "discountPercentage": 34
+    },
+    "briefDescription": [
+      "Made with genuine 925 stamped high polish sterling silver content.",
+      "Lightweight comfort click-lock closure stops heavy ear pulling.",
+      "Timeless fashion design suitable for formal corporate office fits.",
+      "Resistant to oxidation and long-term metal blackening rust."
+    ],
+    "tags": ["JEWELLERY", "Earrings", "Silver 925", "Hoops"],
+    "images": "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Adjustable Rose Gold Pearl Statement Bracelet",
+    "brand": "Aura Jewelry",
+    "size": "Free Size",
+    "sku": "AUR-PB-RG",
+    "category": "JEWELLERY",
+    "status": "Regular",
+    "availability": {
+      "inStock": true,
+      "stockCount": 9,
+      "message": "Only 9 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1100.00,
+      "originalPrice": 1500.00,
+      "savings": 400.00,
+      "discountPercentage": 27
+    },
+    "briefDescription": [
+      "Intertwined modern rose-gold chain tracks shimmering freshwater pearls.",
+      "Adjustable slider bead lock fits multiple dynamic wrist dimensions.",
+      "Perfect dainty layout suitable for wedding guest attire styling.",
+      "Resists scratches and maintains long term surface plating tint."
+    ],
+    "tags": ["JEWELLERY", "Bracelet", "Rose Gold", "Pearl Bead"],
+    "images": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&auto=format&fit=crop&q=80"
+  },
+
+  
+  {
+    "title": "The Ordinary Salicylic Acid 2% Masque [Exp Close]",
+    "brand": "The Ordinary",
+    "size": "50ml",
+    "sku": "ORD-SAM-50",
+    "category": "CLEARANCE SALE",
+    "status": "Regular",
+    "availability": {
+      "inStock": true,
+      "stockCount": 40,
+      "message": "Clearance stock - fast selling"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 850.00,
+      "originalPrice": 2100.00,
+      "savings": 1250.00,
+      "discountPercentage": 60
+    },
+    "briefDescription": [
+      "Charcoal and clay bases target oily dull texturing on face.",
+      "Infused with BHA Salicylic acid to dissolve blackhead deep root plugs.",
+      "Massive clearance discount value due to upcoming short expiry dates.",
+      "Rinses clean easily with lukewarm water applications."
+    ],
+    "tags": ["CLEARANCE SALE", "The Ordinary", "Face Mask", "Big Discount"],
+    "images": "https://images.unsplash.com/photo-1617897903246-719242758050?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Cosrx Aloe Soothing Sun Cream SPF50+ [Old Pack]",
+    "brand": "COSRX",
+    "size": "50ml",
+    "sku": "CSX-ASC-50",
+    "category": "CLEARANCE SALE",
+    "status": "Regular",
+    "availability": {
+      "inStock": true,
+      "stockCount": 18,
+      "message": "Only 18 clearance stocks left"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 990.00,
+      "originalPrice": 1850.00,
+      "savings": 860.00,
+      "discountPercentage": 46
+    },
+    "briefDescription": [
+      "Aloe Arborescens Leaf Extract block cools down sun-inflamed skin.",
+      "Provides reliable daily shielding against mixed UVA/UVB ray profiles.",
+      "Discounted price active solely to clear out previous packaging prints.",
+      "Moisturizing base absorbs smoothly with zero greasy residual films."
+    ],
+    "tags": ["CLEARANCE SALE", "Sunscreen", "COSRX", "Aloe Cream"],
+    "images": "https://images.unsplash.com/photo-1556229174-5e42a09e45af?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Neutrogena Hydro Boost Water Gel Old Stock",
+    "brand": "Neutrogena",
+    "size": "50g",
+    "sku": "NTG-HB-50",
+    "category": "CLEARANCE SALE",
+    "status": "Regular",
+    "availability": {
+      "inStock": true,
+      "stockCount": 2,
+      "message": "Only 2 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1100.00,
+      "originalPrice": 2200.00,
+      "savings": 1100.00,
+      "discountPercentage": 50
+    },
+    "briefDescription": [
+      "Hyaluronic acid water-gel base quenches dry skin cells instantly.",
+      "100% oil-free texture keeps acne prone skin types safe from clogs.",
+      "Clearance stock clearing line - box might show light damage flaws.",
+      "Locks in hydration moisture safely for up to 48 hours."
+    ],
+    "tags": ["CLEARANCE SALE", "Neutrogena", "Water Gel", "Half Price"],
+    "images": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&auto=format&fit=crop&q=80"
+  },
+
+  
+  {
+    "title": "Beardo Activated Charcoal Deep Detox Face Wash",
+    "brand": "Beardo",
+    "size": "100ml",
+    "sku": "BRD-CFW-100",
+    "category": "MEN",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 35,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 390.00,
+      "originalPrice": 490.00,
+      "savings": 100.00,
+      "discountPercentage": 20
+    },
+    "briefDescription": [
+      "Specially formulated for tough masculine skin texture patterns.",
+      "Activated charcoal extracts pull out deep toxic grime and pollution soot.",
+      "Controls excess oil secretion trends without stripping moisture layers.",
+      "Combats pimple causing bacteria buildup from heavy bike riding."
+    ],
+    "tags": ["MEN", "Face Wash", "Beardo", "Charcoal", "Men Grooming"],
+    "images": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Gillette Mach 3 Turbo Razor Handle + 2 Cartridges",
+    "brand": "Gillette",
+    "size": "1 Pack",
+    "sku": "GLT-M3T-01",
+    "category": "MEN",
+    "status": "Featured Products",
+    "availability": {
+      "inStock": true,
+      "stockCount": 18,
+      "message": "Only 18 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 750.00,
+      "originalPrice": 950.00,
+      "savings": 200.00,
+      "discountPercentage": 21
+    },
+    "briefDescription": [
+      "Features 3 stronger-than-steel blades that stay sharper for longer cycles.",
+      "Engineered to deliver up to 15 comfortable clean close shaves.",
+      "Lubricating gel strip glides smoothly to protect skin from red rash.",
+      "Premium balanced ergonomic handle offers perfect sink wet traction."
+    ],
+    "tags": ["MEN", "Razor", "Gillette", "Shaving", "Mach 3"],
+    "images": "https://images.unsplash.com/photo-1619551483344-f99ea3c9c82e?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "The Body Shop Maca Root & Aloe Shaving Cream",
+    "brand": "The Body Shop",
+    "size": "200ml",
+    "sku": "TBS-MRA-200",
+    "category": "MEN",
+    "status": "Regular",
+    "availability": {
+      "inStock": true,
+      "stockCount": 6,
+      "message": "Only 6 items left in stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 1850.00,
+      "originalPrice": 2200.00,
+      "savings": 350.00,
+      "discountPercentage": 16
+    },
+    "briefDescription": [
+      "Enriched with Peruvian maca root extract and organic aloe vera layers.",
+      "Softens beard hairs instantly for a smooth, irritation-free blade glide.",
+      "Moisturizes freshly shaved facial skin to stop burning sensations.",
+      "100% vegan formula with zero animal testing origins."
+    ],
+    "tags": ["MEN", "Shaving Cream", "The Body Shop", "Sensitive Fix"],
+    "images": "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Nivea Men Dark Spot Reduction Moisturizer SPF15",
+    "brand": "Nivea",
+    "size": "50ml",
+    "sku": "NIV-DSR-50",
+    "category": "MEN",
+    "status": "New Arrivals",
+    "availability": {
+      "inStock": true,
+      "stockCount": 24,
+      "message": "In stock"
+    },
+    "pricing": {
+      "currency": "৳",
+      "currentPrice": 650.00,
+      "originalPrice": 800.00,
+      "savings": 150.00,
+      "discountPercentage": 19
+    },
+    "briefDescription": [
+      "Lightweight cream formula targets chronic acne scar dark spots.",
+      "Contains SPF 15 to block skin darkening caused by solar rays.",
+      "Absorbs fast with zero sticky shine on oily foreheads.",
+      "Specially optimized for men's outdoor daily travel lifestyles."
+    ],
+    "tags": ["MEN", "Moisturizer", "Nivea Men", "Dark Spot", "SPF"],
+    "images": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&auto=format&fit=crop&q=80"
+  }
+]
