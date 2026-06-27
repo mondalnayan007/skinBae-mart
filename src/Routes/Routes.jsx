@@ -44,6 +44,10 @@ export const router = createBrowserRouter([
         {
           path:'/category',
           Component:CategoryLayout
+        },
+        {
+          path:'/category/:categoryName',
+          Component:CategoryLayout
         }
 
     ]
