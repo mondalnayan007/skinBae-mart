@@ -6,10 +6,13 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
 
+  const apiURL1= "http://localhost:4000";
+    const apiURL2 = "https://skin-bae-mart-server.vercel.app";
+
 
   useEffect(() => {
     // Vite/React প্রজেক্টে public ফোল্ডার অ্যাক্সেসের সঠিক পাথ
-    fetch(`http://localhost:4000/product/${id}`)
+    fetch(`${apiURL2}/product/${id}`)
       .then(res => res.json())
       .then(data => {
         
