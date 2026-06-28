@@ -5,16 +5,16 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
-  const [activeImage, setActiveImage] = useState(0);
+
 
   useEffect(() => {
     // Vite/React প্রজেক্টে public ফোল্ডার অ্যাক্সেসের সঠিক পাথ
-    fetch('/products.json')
+    fetch(`http://localhost:4000/product/${id}`)
       .then(res => res.json())
       .then(data => {
         // ID টাইপ মিসম্যাচ ফিক্স করতে String কাস্টিং ব্যবহার করা হয়েছে
-        const singleProduct = data.find(p => String(p.id) === String(id));
-        if (singleProduct) setProduct(singleProduct);
+       setProduct(data);
+
       })
       .catch(err => console.error("Data loading node error:", err));
   }, [id]);
@@ -30,6 +30,8 @@ const ProductDetails = () => {
     );
   }
 
+
+  console.log(product);
   // আপনার নতুন ডাটা স্ট্রাকচার অনুযায়ী নিখুঁত ডিস্ট্রাকচারিং
   const {
     title,
@@ -42,13 +44,11 @@ const ProductDetails = () => {
     pricing,
     briefDescription,
     tags,
-    images: rawImages
+    images
   } = product;
 
   // আপনার জেসন ফাইলে ইমেজ যদি একটি স্ট্রিং হয়, তবে সেটিকে অ্যারেতে কনভার্ট করার মেকানিজম
-  const productImages = Array.isArray(rawImages) 
-    ? rawImages 
-    : [rawImages || "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=600"];
+
 
   // কোয়ান্টিটি চেঞ্জ হ্যান্ডলার (যা স্টক লিমিটকে ক্রস করতে দেবে না)
   const handleQuantityChange = (type) => {
@@ -70,7 +70,7 @@ const ProductDetails = () => {
           {/* Main Visual Display */}
           <div className="relative aspect-[4/3] sm:aspect-square w-full rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 group">
             <img 
-              src={productImages[activeImage]} 
+              src={images} 
               alt={title} 
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
@@ -91,23 +91,23 @@ const ProductDetails = () => {
           </div>
 
           {/* Thumbnail Strip (মাল্টিপল ইমেজ থাকলে ডাইনামিকালি দেখাবে) */}
-          {productImages.length > 1 && (
+      
             <div className="flex gap-3 overflow-x-auto no-scrollbar py-1">
-              {productImages.map((img, index) => (
+              
                 <button
-                  key={index}
-                  onClick={() => setActiveImage(index)}
-                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden flex-shrink-0 border-2 transition-all duration-200 ${
-                    activeImage === index 
-                      ? 'border-[#7C4DFF] shadow-sm scale-95' 
-                      : 'border-gray-100 hover:border-gray-300'
+                  
+                  
+                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden flex-shrink-0 border-2 transition-all duration-200
+                    
+                      border-[#7C4DFF] shadow-sm scale-95' 
+                    
                   }`}
                 >
-                  <img src={img} alt="thumbnail" className="w-full h-full object-cover" />
+                  <img src={images} alt="thumbnail" className="w-full h-full object-cover" />
                 </button>
-              ))}
+             
             </div>
-          )}
+         
         </div>
 
         {/* Right Side: Product Meta & Purchase Controls */}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router';
 import ProductCard from '../../Components/ProductCard';
 import PopularCategories from '../../Components/PopularCategories';
@@ -8,8 +8,19 @@ import TopBrands from '../../Components/TopBrands';
 import Reviews from '../../Components/Reviews/Reviews';
 
 const Home = () => {
-  const products = useLoaderData() || [];
+  // const products = useLoaderData() || [];
 
+  const [products,setProducts] = useState([]);
+
+
+
+  useEffect(()=>{
+    fetch('http://localhost:4000/product')
+    .then(res =>res.json())
+    .then(data => {
+      setProducts(data)
+    })
+  },[])
   // ১. ট্যাব ফিল্টারিং স্টেট: ডিফল্টভাবে null থাকবে (কোনো ট্যাব সিলেক্টেড থাকবে না)
   const [activeTab, setActiveTab] = useState(null);
 
@@ -94,8 +105,8 @@ const Home = () => {
                   }}
                 >
                   {filteredProducts.map((product) => (
-                    <Link to={`product/${product.id}`}
-                      key={product.id}
+                    <Link to={`product/${product._id}`}
+                      key={product._id}
                       className="w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-12px)] lg:w-[calc(25%-12px)] flex-shrink-0 snap-center sm:snap-none cursor-pointer"
                     >
                       <ProductCard product={product} />

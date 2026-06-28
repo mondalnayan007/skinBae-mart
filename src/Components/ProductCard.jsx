@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ProductCard = ({ product }) => {
-  const { title, brand, size, pricing, images, availability, status } = product;
+  const { title, brand, size, pricing, images, availability, status} = product;
 
   return (
     <div className="group relative flex flex-col w-full max-w-sm bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
