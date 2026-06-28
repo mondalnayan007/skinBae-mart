@@ -72,10 +72,10 @@ const CategoryLayout = () => {
     return (
         <div className='my-4'>
             <div className='grid grid-cols-5 gap-4'>
-                <div className='col-span-1'>
+                <div className='col-span-1 sticky top-40 h-fit px-2'>
                     <h3 className="font-bold mb-2">Popular Categories :-</h3>
                     <div>
-                        <nav className="flex flex-col gap-1">
+                        <nav className="flex flex-col gap-1 ">
                             {categories.map((category, index) => (
                                 <NavLink
                                     key={index}
