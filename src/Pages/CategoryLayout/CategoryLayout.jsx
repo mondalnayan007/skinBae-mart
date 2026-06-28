@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../../Components/ProductCard';
-import { NavLink, useParams } from 'react-router';
+import { Link, NavLink, useParams } from 'react-router';
 
 
 
@@ -92,7 +92,7 @@ useEffect(() => {
                         {loading ? (
                             <p className="col-span-3 text-center text-gray-500 mt-5">Loading products...</p>
                         ) : products.length > 0 ? (
-                            products?.map(product => <ProductCard key={product.id || product._id} product={product}></ProductCard>)
+                            products?.map(product => <Link to={`/product/${product._id}`}><ProductCard key={product.id || product._id} product={product}></ProductCard></Link>)
                         ) : (
                             <p className="col-span-3 text-center text-gray-500 mt-5">No products found in this category.</p>
                         )}
