@@ -14,13 +14,31 @@ const Home = () => {
 
 
 
-  useEffect(()=>{
-    fetch('http://localhost:4000/product')
-    .then(res =>res.json())
-    .then(data => {
-      setProducts(data)
+useEffect(() => {
+  const localUrl = 'http://localhost:4000/product';
+  const liveUrl = 'https://skin-bae-mart-server.vercel.app/product'; // আপনার আসল লাইভ সার্ভার ইউআরএলটি এখানে বসান
+
+  // প্রথমে লোকালহোস্ট থেকে ফেচ করার চেষ্টা
+  fetch(localUrl)
+    .then(res => {
+      if (!res.ok) throw new Error("Localhost failure"); // রেসপন্স ঠিক না থাকলে এরর থ্রো করবে
+      return res.json();
     })
-  },[])
+    .then(data => {
+      setProducts(data);
+    })
+    .catch(err => {
+      // লোকালহোস্ট ফেইল করলে বা বন্ধ থাকলে লাইভ ইউআরএল কল হবে
+      console.warn("Localhost active নয়, live server থেকে ডাটা আনা হচ্ছে...");
+      
+      fetch(liveUrl)
+        .then(res => res.json())
+        .then(data => {
+          setProducts(data);
+        })
+        .catch(liveErr => console.error("উভয় সার্ভারই ডাউন:", liveErr));
+    });
+}, []);
   // ১. ট্যাব ফিল্টারিং স্টেট: ডিফল্টভাবে null থাকবে (কোনো ট্যাব সিলেক্টেড থাকবে না)
   const [activeTab, setActiveTab] = useState(null);
 
