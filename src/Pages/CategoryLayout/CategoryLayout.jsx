@@ -71,8 +71,8 @@ const CategoryLayout = () => {
 
     return (
         <div className='my-4'>
-            <div className='grid grid-cols-5 gap-4'>
-                <div className='col-span-1 sticky top-40 h-fit px-2'>
+            <div className='grid sm:grid-cols-5 px-2 sm:gap-4'>
+                <div className='hidden sm:flex flex-col col-span-1 sticky top-40 h-fit px-2'>
                     <h3 className="font-bold mb-2">Popular Categories :-</h3>
                     <div>
                         <nav className="flex flex-col gap-1 ">
@@ -102,10 +102,10 @@ const CategoryLayout = () => {
                         value={searchTerms}
                         onChange={handleSearch}
                         placeholder='🔍 Search your product' 
-                        className='border-none outline outline-pink-400 rounded-full p-1 px-4' 
+                        className='border-none sticky top-40 z-50 drop-shadow-xl drop-shadow-pink-200 bg-white outline outline-pink-400  rounded-full p-1 px-4' 
                     />
 
-                    <div className='grid grid-cols-3 mt-3 gap-4'>
+                    <div className='grid grid-cols-2 sm:grid-cols-3 mt-3 gap-4'>
                         {loading ? (
                             <p className="col-span-3 text-center text-gray-500 mt-5">Loading products...</p>
                         ) : products.length > 0 ? (
