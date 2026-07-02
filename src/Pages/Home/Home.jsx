@@ -13,13 +13,13 @@ const Home = () => {
   const [products,setProducts] = useState([]);
 
 
-  const apiURL1= "http://localhost:4000";
+    const apiURL1= "http://localhost:4000";
     const apiURL2 = "https://skin-bae-mart-server.vercel.app";
 
 
 
   useEffect(()=>{
-    fetch(`${apiURL2}/product`)
+    fetch(`${apiURL1}/product`)
     .then(res =>res.json())
     .then(data => {
       setProducts(data)

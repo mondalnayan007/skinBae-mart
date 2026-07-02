@@ -1,84 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Products = () => {
   // ১. আপনার ডাটা স্ট্রাকচার অনুযায়ী স্কিনকেয়ার প্রোডাক্টস ডামি ডাটা লিস্ট
-  const [products, setProducts] = useState([
-    {
-      id: "15",
-      title: "The Body Shop Tea Tree Skin Clearing Facial Wash",
-      brand: "The Body Shop",
-      size: "250ml",
-      sku: "33061",
-      category: "Skin",
-      status: "Featured Products",
-      availability: {
-        inStock: true,
-        stockCount: 4,
-        message: "Only 4 items left in stock"
-      },
-      pricing: {
-        currency: "৳",
-        currentPrice: 1350.00,
-        originalPrice: 1650.00,
-        savings: 300.00,
-        discountPercentage: 18
-      },
-      briefDescription: [
-        "Gel-based cleanser suitable for blemished skin.",
-        "Infused with Community Fair Trade tea tree oil."
-      ],
-      tags: ["Skin", "Facial Wash", "Tea Tree"],
-      images: "https://bk.shajgoj.com/storage/2018/05/bodyshop-teatree-toner-600.jpg"
-    },
-    {
-      id: "16",
-      title: "COSRX Advanced Snail 96 Mucin Power Essence",
-      brand: "COSRX",
-      size: "100ml",
-      sku: "22045",
-      category: "Skin",
-      status: "Featured Products",
-      availability: {
-        inStock: true,
-        stockCount: 45,
-        message: "Only 45 items left in stock"
-      },
-      pricing: {
-        currency: "৳",
-        currentPrice: 2100.00,
-        originalPrice: 2500.00,
-        savings: 400.00,
-        discountPercentage: 16
-      },
-      briefDescription: ["Light-weight essence which absorbs into skin fast."],
-      tags: ["Skin", "Essence", "Snail Mucin"],
-      images: "https://images.unsplash.com/photo-1608248597481-496100c8c836?w=100&auto=format&fit=crop&q=80"
-    },
-    {
-      id: "17",
-      title: "CeraVe Hydrating Facial Cleanser",
-      brand: "CeraVe",
-      size: "473ml",
-      sku: "11094",
-      category: "Skin",
-      status: "Regular",
-      availability: {
-        inStock: false,
-        stockCount: 0,
-        message: "Out of stock"
-      },
-      pricing: {
-        currency: "৳",
-        currentPrice: 1850.00,
-        originalPrice: 1850.00,
-        savings: 0,
-        discountPercentage: 0
-      },
-      briefDescription: ["Cleanses, hydrates and helps restore the protective skin barrier."],
-      tags: ["Skin", "Cleanser", "Hydrating"],
-      images: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=100&auto=format&fit=crop&q=80"
-    }
-  ]);
+  const [products, setProducts] = useState([]);
+
+  const apiURL1= "http://localhost:4000";
+    const apiURL2 = "https://skin-bae-mart-server.vercel.app";
+
+  useEffect(()=>{
+    fetch(`${apiURL1}/products`)
+    .then(res=>res.json())
+    .then(data => {
+      setProducts(data);
+    })
+  },[])
 
   // ২. সার্চ, ফিল্টার ও পেজ কন্ট্রোল স্টেট
   const [searchQuery, setSearchQuery] = useState("");

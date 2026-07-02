@@ -21,10 +21,10 @@ const CategoryLayout = () => {
         // ডেটা ফেচ শুরু হওয়ার আগে লোডিং ট্রু করে দেওয়া হলো
         setLoading(true);
 
-        let apiUrl = `${apiURL2}/category`; 
+        let apiUrl = `${apiURL1}/category`; 
         
         if (categoryName) {
-            apiUrl = `${apiURL2}/category/${categoryName}`; 
+            apiUrl = `${apiURL1}/category/${categoryName}`; 
         }
 
         // ব্যাকএন্ড সার্চ হ্যান্ডেল করার জন্য কুয়েরি প্যারামিটার তৈরি

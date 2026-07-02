@@ -12,7 +12,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     // Vite/React প্রজেক্টে public ফোল্ডার অ্যাক্সেসের সঠিক পাথ
-    fetch(`${apiURL2}/product/${id}`)
+    fetch(`${apiURL1}/product/${id}`)
       .then(res => res.json())
       .then(data => {
         
