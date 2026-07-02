@@ -38,6 +38,11 @@ const Products = () => {
     });
   };
 
+
+  const handleAction =()=>{
+    alert("Action button clicked")
+  }
+
   // ১. প্রথমে ডাটা ফিল্টার করা হচ্ছে
   const filteredProducts = products.filter(product => {
     const matchesSearch = 
@@ -278,7 +283,7 @@ const Products = () => {
                     <div className="text-[10px] text-gray-500 font-semibold">{product.size}</div>
                   </td>
                   <td className="py-4 pr-4 text-center">
-                    <button className="text-gray-400 hover:text-gray-600 text-sm font-bold">•••</button>
+                    <button onClick={handleAction} className="text-gray-400 hover:text-gray-600 text-sm font-bold">•••</button>
                   </td>
                 </tr>
               ))
@@ -286,6 +291,30 @@ const Products = () => {
           </tbody>
         </table>
       </div>
+
+
+
+          {/* Action modal section start  */}
+
+
+      {
+        isModalOpen && 
+        <div>
+          helllo world !!!!!!!!!
+        </div>
+      }
+
+
+
+
+
+
+
+
+          {/* Action modal section end  */}
+
+
+
 
       {/* INTEGRATED ADD SKINCARE PRODUCT MODAL */}
       {isModalOpen && (
