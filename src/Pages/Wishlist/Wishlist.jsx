@@ -75,7 +75,7 @@ const Wishlist = () => {
                       {item.brand}
                     </span>
                     <h3 className="text-xs sm:text-sm font-semibold text-gray-900 leading-snug tracking-tight max-w-sm lg:max-w-md">
-                      {item.name}
+                      {item.title}
                     </h3>
                     <span className="text-[11px] text-gray-400 font-medium">
                       Size: {item.size}
