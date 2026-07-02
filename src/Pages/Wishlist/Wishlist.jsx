@@ -1,46 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BsCartCheck } from "react-icons/bs";
 import { MdDelete } from "react-icons/md";
 
 const Wishlist = () => {
-  const [wishlist, setWishlist] = useState([
-    {
-      id: 1,
-      brand: "COSRX",
-      name: "Advanced Snail 96 Mucin Power Essence",
-      size: "100ml",
-      price: "1,450",
-      inStock: true,
-      image: "https://images.unsplash.com/photo-1608248597481-496100c80836?w=500&auto=format&fit=crop&q=80"
-    },
-    {
-      id: 2,
-      brand: "CERAVE",
-      name: "Hydrating Facial Cleanser",
-      size: "236ml",
-      price: "1,850",
-      inStock: true,
-      image: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500&auto=format&fit=crop&q=80"
-    },
-    {
-      id: 3,
-      brand: "BEAUTY OF JOSEON",
-      name: "Relief Sun : Rice + Probiotics SPF50+",
-      size: "50ml",
-      price: "1,350",
-      inStock: false,
-      image: "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=500&auto=format&fit=crop&q=80"
-    }
-  ]);
 
-  const removeItem = (id) => {
-    setWishlist(wishlist.filter(item => item.id !== id));
+
+  const [wishlist, setWishlist] = useState([]);
+
+  useEffect(() => {
+    const list = JSON.parse(localStorage.getItem('wishlist')) || [];
+    setWishlist(list);
+  }, []);
+
+  // উইশলিস্ট থেকে কোনো আইটেম রিমুভ করতে চাইলে
+  const handleRemoveItem = (id) => {
+    const updatedList = wishlist.filter(item => item._id !== id);
+    setWishlist(updatedList);
+    localStorage.setItem('wishlist', JSON.stringify(updatedList));
+    window.dispatchEvent(new Event('wishlistUpdated')); // নেভবার কাউন্ট কমাবে
   };
+
+
 
   return (
     <div className="min-h-screen bg-[#FAFAFC] text-[#111111] antialiased p-4 sm:p-8 lg:p-12">
       <div className="max-w-5xl mx-auto">
-        
+
         {/* ========================================== */}
         {/* PREMIUM EDITORIAL HEADER ZONE */}
         {/* ========================================== */}
@@ -68,18 +53,18 @@ const Wishlist = () => {
         ) : (
           <div className="flex flex-col gap-5">
             {wishlist.map((item) => (
-              <div 
-                key={item.id} 
+              <div
+                key={item.id}
                 className="bg-white rounded-2xl p-4 sm:p-5 border border-gray-100/40  shadow-xl transition-all duration-300 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 group"
               >
-                
+
                 {/* LEFT SIDE: IMAGE & METADATA CONTENT PACK */}
                 <div className="flex items-center gap-4 sm:gap-6 w-full md:w-auto">
                   {/* Aspect Product Canvas */}
                   <div className="w-20 h-24 sm:w-24 sm:h-28 bg-[#F9F9F9] rounded-xl overflow-hidden flex-shrink-0 relative border border-gray-50">
-                    <img 
-                      src={item.image} 
-                      alt={item.name} 
+                    <img
+                      src={item.images}
+                      alt={item.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
@@ -95,7 +80,7 @@ const Wishlist = () => {
                     <span className="text-[11px] text-gray-400 font-medium">
                       Size: {item.size}
                     </span>
-                    
+
                     {/* Availability Badge */}
                     <div className="mt-1.5 w-fit">
                       {item.inStock ? (
@@ -109,7 +94,7 @@ const Wishlist = () => {
 
                 {/* RIGHT SIDE: PRICE & CONTROL CTA WRAPPER */}
                 <div className="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center w-full md:w-auto gap-4 border-t md:border-t-0 border-gray-100 pt-4 md:pt-0">
-                  
+
                   {/* Price Block */}
                   <div className="text-left md:text-right">
                     <span className="text-xs font-bold text-gray-400 mr-0.5">৳</span>
@@ -119,22 +104,22 @@ const Wishlist = () => {
                   {/* Actions Package */}
                   <div className="flex items-center gap-4 sm:gap-3">
 
-                       <button className='text-3xl text-green-500 cursor-pointer hover:scale-110 transition-all' >
+                    <button className='text-3xl text-green-500 cursor-pointer hover:scale-110 transition-all' >
                       <BsCartCheck />
                     </button>
 
 
 
 
-                    <button 
-                      onClick={() => removeItem(item.id)}
+                    <button
+                      onClick={() => handleRemoveItem(item._id)}
                       className="text-3xl font-bold cursor-pointer hover:scale-110 transition-all text-rose-500  px-2 py-2 uppercase tracking-wider"
                       title="Remove Item"
                     >
-                      <MdDelete />
+                     <MdDelete />
                     </button>
-                    
-                    
+
+
                   </div>
 
                 </div>

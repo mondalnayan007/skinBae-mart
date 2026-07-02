@@ -9,18 +9,39 @@ const Navbar = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const mobileSearchRef = useRef(null);
     const [showDropdown, setShowDropdown] = useState(false);
+    
+    // ❤️ উইশলিস্টের জন্য স্টেট ম্যানেজমেন্ট
+    const [wishlistCount, setWishlistCount] = useState(0);
 
-    const { user, loading,handleLogout } = use(AuthContext);
+    const { user, loading, handleLogout } = use(AuthContext);
     console.log(user);
 
+    // 🔄 উইশলিস্ট কাউন্ট লোকাল স্টোরেজ থেকে রিড করার ফাংশন
+    const updateWishlistCount = () => {
+        const currentWishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        setWishlistCount(currentWishlist.length);
+    };
 
-    
+    // 🔔 পেজ লোড এবং গ্লোবাল ইভেন্ট লিসেনিং ট্র্যাকিং
+    useEffect(() => {
+        // প্রথমবার পেজ লোড হলে কাউন্ট সেট করবে
+        updateWishlistCount();
+
+        // ProductDetails থেকে আসা উইশলিস্ট ইভেন্ট লিসেন করবে
+        window.addEventListener('wishlistUpdated', updateWishlistCount);
+        
+        // কম্পোনেন্ট আনমাউন্ট হলে লিসেনার রিমুভ করবে (মেমোরি লিক রোধে)
+        return () => {
+            window.removeEventListener('wishlistUpdated', updateWishlistCount);
+        };
+    }, []);
 
     const handleSignout = () => {
        handleLogout()
-       .then(res=>{console.log(res);})
-       .catch(err =>{console.log(err);})
+       .then(res => { console.log(res); })
+       .catch(err => { console.log(err); })
     };
+
     // Focus mobile input field when top search drawer opens
     useEffect(() => {
         if (isSearchOpen && mobileSearchRef.current) {
@@ -55,14 +76,11 @@ const Navbar = () => {
 
                     <Link to="/" className="flex-shrink-0 flex items-center select-none max-w-[60%] sm:max-w-none">
                         <div className="flex items-center justify-start gap-1.5 sm:gap-2 w-full">
-                            {/* Image container using max-height to respect the navbar grid */}
                             <img
                                 className="h-auto max-h-10 sm:max-h-14 md:max-h-20 w-auto max-w-[40px] sm:max-w-[64px] md:max-w-[96px] object-contain flex-shrink-0 object-left"
                                 src={logo}
                                 alt="SkinBae Mart Logo"
                             />
-
-                            {/* Text adjusts size down to text-base/text-sm on tiny screens to avoid layout breaking */}
                             <p className="font-bold text-sm md:text-2xl text-black ">
                                 SkinBae Mart
                             </p>
@@ -70,13 +88,12 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {/* Central Search Bar - Only Visible on Desktop (>= md) to match your image */}
-                <div className="hidden md:flex flex-1 max-w-2xl  items-center bg-[#F5F5F5] rounded-md pl-4 pr-1.5 py-1.5 mx-4">
-
+                {/* Central Search Bar - Only Visible on Desktop (>= md) */}
+                <div className="hidden md:flex flex-1 max-w-2xl items-center bg-[#F5F5F5] rounded-md pl-4 pr-1.5 py-1.5 mx-4">
                     <input
                         type="text"
                         placeholder="I am looking for..."
-                        className="w-full bg-transparent p-2 text-sm outline outline-[#7C4DFF] rounded-l-md  text-gray-700 placeholder-gray-400   "
+                        className="w-full bg-transparent p-2 text-sm outline outline-[#7C4DFF] rounded-l-md text-gray-700 placeholder-gray-400"
                     />
                     <button className="bg-[#7C4DFF] hover:bg-gray-800 transition-colors p-3 rounded-r-md flex items-center justify-center text-white">
                         <Search className="w-4 h-4" />
@@ -85,7 +102,7 @@ const Navbar = () => {
 
                 {/* Right Side Action Icons */}
                 <div className="flex items-center gap-2 sm:gap-4 md:gap-6 text-gray-900">
-                    {/* Mobile Search Icon Trigger - Hidden on Desktop */}
+                    {/* Mobile Search Icon Trigger */}
                     <button
                         onClick={toggleMobileSearch}
                         className={`md:hidden p-2 rounded-full transition-colors ${isSearchOpen ? 'bg-gray-100' : 'hover:bg-gray-100'}`}
@@ -98,7 +115,6 @@ const Navbar = () => {
                     {
                         user ? (
                             <div className="relative">
-                                {/* ইউজারের প্রোফাইল ইমেজ বাটন */}
                                 <button
                                     onClick={() => setShowDropdown(!showDropdown)}
                                     className="focus:outline-none"
@@ -110,7 +126,6 @@ const Navbar = () => {
                                     />
                                 </button>
 
-                                {/* ড্রপডাউন মেনু (শুধু ট্রু হলেই দেখাবে) */}
                                 {showDropdown && (
                                     <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-100">
                                         <button
@@ -129,13 +144,17 @@ const Navbar = () => {
                         )
                     }
 
-                    <Link to="/wishlist" className="relative p-2 hover:bg-gray-100 rounded-full transition-colors">
-                        <Heart className="h-6 w-6 stroke-[1.5]" />
-                        <span className="absolute top-1 right-1 bg-[#D11A2A] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
-                            0
-                        </span>
+                    {/* ❤️ ডাইনামিক উইশলিস্ট হার্ট আইকন ও ব্যাজ */}
+                    <Link to="/wishlist" className="relative p-2 hover:bg-gray-100 rounded-full transition-colors group">
+                        <Heart className="h-6 w-6 stroke-[1.5] group-hover:text-[#FF2E63] transition-colors" />
+                        {wishlistCount > 0 && (
+                            <span className="absolute top-1 right-1 bg-[#FF2E63] text-white text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center animate-fade-in shadow-sm border border-white">
+                                {wishlistCount}
+                            </span>
+                        )}
                     </Link>
 
+                    {/* 🛒 কার্ট আইকন */}
                     <Link to="/cart" className="relative p-2 hover:bg-gray-100 rounded-full transition-colors">
                         <ShoppingCart className="h-6 w-6 stroke-[1.5]" />
                         <span className="absolute top-1 right-1 bg-[#D11A2A] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
@@ -145,12 +164,9 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* ========================================================= */}
-            {/* MOBILE TOP SEARCH DRAWER (Only active < md)               */}
-            {/* ========================================================= */}
+            {/* MOBILE TOP SEARCH DRAWER */}
             <div
-                className={`md:hidden absolute top-16 left-0 w-full bg-white border-b border-gray-200 z-40 shadow-md transform transition-all duration-300 ease-in-out ${isSearchOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0 pointer-events-none'
-                    }`}
+                className={`md:hidden absolute top-16 left-0 w-full bg-white border-b border-gray-200 z-40 shadow-md transform transition-all duration-300 ease-in-out ${isSearchOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0 pointer-events-none'}`}
             >
                 <div className="px-4 py-4 flex items-center gap-3">
                     <div className="flex-1 flex items-center bg-[#F5F5F5] rounded-md px-3 py-2">
@@ -171,12 +187,9 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* ========================================================= */}
-            {/* MOBILE LEFT SIDE DRAWER (Only active < md)              */}
-            {/* ========================================================= */}
+            {/* MOBILE LEFT SIDE DRAWER */}
             <div
-                className={`md:hidden fixed top-0 left-0 h-full w-full sm:w-[320px] bg-white z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'
-                    }`}
+                className={`md:hidden fixed top-0 left-0 h-full w-full sm:w-[320px] bg-white z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
             >
                 <div className="flex flex-col h-full">
                     <div className="flex items-center justify-between p-4 border-b border-gray-100">
@@ -201,7 +214,7 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Backdrop overlay for mobile triggers */}
+            {/* Backdrop overlay */}
             {(isMenuOpen || isSearchOpen) && (
                 <div
                     className="md:hidden fixed inset-0 bg-black/40 z-30 transition-opacity"
@@ -211,10 +224,7 @@ const Navbar = () => {
                     }}
                 />
             )}
-
-
         </nav>
-
     );
 };
 
