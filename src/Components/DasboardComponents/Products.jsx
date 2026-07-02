@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import Swal from 'sweetalert2';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -23,12 +24,36 @@ const Products = () => {
   const [statusFilter, setStatusFilter] = useState("all");
   const [sortBy, setSortBy] = useState("default"); // শর্টিং এর জন্য নতুন স্টেট
 
+  // --- অ্যাকশন ও আপডেটের জন্য নতুন স্টেট (লেআউট অপরিবর্তিত রেখে) ---
+  const [activeDropdownId, setActiveDropdownId] = useState(null);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const dropdownRef = useRef(null);
+
   // মডেল ফর্মের জন্য স্টেট
   const [modalFormData, setModalFormData] = useState({
     title: '', brand: '', size: '', sku: '', category: 'Skin', status: 'Featured Products',
     inStock: true, stockCount: '', currentPrice: '', originalPrice: '',
     briefDescription: '', tags: '', images: ''
   });
+
+  // আপডেট ফর্মের জন্য স্টেট
+  const [updateFormData, setUpdateFormData] = useState({
+    title: '', brand: '', size: '', sku: '', category: 'Skin', status: 'Featured Products',
+    inStock: true, stockCount: '', currentPrice: '', originalPrice: '',
+    briefDescription: '', tags: '', images: ''
+  });
+
+  // বাইরে ক্লিক করলে ড্রপডাউন বন্ধ করার লজিক
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setActiveDropdownId(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleModalChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -38,10 +63,13 @@ const Products = () => {
     });
   };
 
-
-  const handleAction =()=>{
-    alert("Action button clicked")
-  }
+  const handleUpdateChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setUpdateFormData({
+      ...updateFormData,
+      [name]: type === 'checkbox' ? checked : value
+    });
+  };
 
   // ১. প্রথমে ডাটা ফিল্টার করা হচ্ছে
   const filteredProducts = products.filter(product => {
@@ -59,17 +87,14 @@ const Products = () => {
     return matchesSearch && matchesStock && matchesStatus;
   });
 
-  // ২. ফিল্টার করা ডাটাকে শর্টিং লজিক অনুযায়ী সাজানো হচ্ছে
+  // ২. ফিল্টার করা ডাটাকে শর্টিং লজিক অনুযায়ী সাজানো হচ্ছে
   const finalProcessedProducts = [...filteredProducts].sort((a, b) => {
     if (sortBy === "latest") {
-      // যদি ডাটাবেজে MongoDB-এর _id থাকে, তবে সেটির টাইমস্ট্যাম্প দিয়ে বা নরমাল id দিয়ে শর্ট হবে
       const idA = a._id || a.id || 0;
       const idB = b._id || b.id || 0;
-      
-      // বড় আইডি (Latest) আগে আসবে
       return idB > idA ? 1 : -1;
     }
-    return 0; // Default (ডাটাবেজের নিজস্ব সিরিয়াল)
+    return 0; // Default
   });
 
   const handleAddProductSubmit = (e) => {
@@ -107,32 +132,127 @@ const Products = () => {
 
     fetch(`${apiURL1}/products`, {
       method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
+      headers: { 'content-type': 'application/json' },
       body: JSON.stringify(formattedProduct)
     })
     .then(res => res.json())
     .then(insertedProduct => {
       const productWithId = insertedProduct.insertedId ? { ...formattedProduct, _id: insertedProduct.insertedId } : formattedProduct;
-      
       setProducts([productWithId, ...products]); 
       setIsModalOpen(false); 
-      
       setModalFormData({
         title: '', brand: '', size: '', sku: '', category: 'Skin', status: 'Featured Products',
         inStock: true, stockCount: '', currentPrice: '', originalPrice: '',
         briefDescription: '', tags: '', images: ''
       });
+      Swal.fire({ title: 'Success!', text: 'Product added successfully.', icon: 'success', timer: 1500, showConfirmButton: false });
     })
     .catch(err => {
       console.error("Error posting product:", err);
-      alert("Something went wrong while uploading product.");
+      Swal.fire('Error!', 'Something went wrong.', 'error');
     });
   };
 
+  // আপডেট সাবমিট লজিক
+  const handleUpdateProductSubmit = (e) => {
+    e.preventDefault();
+    if (!selectedProduct?._id) return;
+
+    const currentPriceNum = parseFloat(updateFormData.currentPrice) || 0;
+    const originalPriceNum = parseFloat(updateFormData.originalPrice) || 0;
+    const savings = originalPriceNum > currentPriceNum ? originalPriceNum - currentPriceNum : 0;
+    const discountPercentage = originalPriceNum > 0 ? Math.round((savings / originalPriceNum) * 100) : 0;
+    const stockCountNum = parseInt(updateFormData.stockCount) || 0;
+
+    const updatedData = {
+      title: updateFormData.title,
+      brand: updateFormData.brand,
+      size: updateFormData.size,
+      sku: updateFormData.sku,
+      category: updateFormData.category,
+      status: updateFormData.status,
+      availability: {
+        inStock: stockCountNum > 0 ? updateFormData.inStock : false,
+        stockCount: stockCountNum,
+        message: stockCountNum > 0 ? `Only ${stockCountNum} items left in stock` : "Out of stock"
+      },
+      pricing: {
+        currency: "৳",
+        currentPrice: currentPriceNum,
+        originalPrice: originalPriceNum,
+        savings: savings,
+        discountPercentage: discountPercentage
+      },
+      briefDescription: updateFormData.briefDescription.split('\n').filter(line => line.trim() !== ''),
+      tags: updateFormData.tags.split(',').map(tag => tag.trim()).filter(tag => tag !== ''),
+      images: updateFormData.images
+    };
+
+    fetch(`${apiURL1}/products/${selectedProduct._id}`, {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(updatedData)
+    })
+    .then(res => res.json())
+    .then(result => {
+      if (result.modifiedCount > 0 || result.acknowledged) {
+        const updatedList = products.map(p => p._id === selectedProduct._id ? { ...p, ...updatedData } : p);
+        setProducts(updatedList);
+        setIsUpdateModalOpen(false);
+        Swal.fire({ title: 'Updated!', text: 'Changes saved successfully.', icon: 'success', timer: 1500, showConfirmButton: false });
+      }
+    })
+    .catch(err => console.error("Error updating product:", err));
+  };
+
+  // ডিলিট লজিক
+  const handleDeleteProduct = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#5A57FF',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`${apiURL1}/products/${id}`, { method: 'DELETE' })
+        .then(res => res.json())
+        .then(data => {
+          if (data.deletedCount > 0) {
+            setProducts(products.filter(p => p._id !== id));
+            Swal.fire('Deleted!', 'Product has been removed.', 'success');
+          }
+        })
+        .catch(err => console.error("Error deleting product:", err));
+      }
+    });
+  };
+
+  const openUpdateModal = (product) => {
+    setSelectedProduct(product);
+    setUpdateFormData({
+      title: product.title || '',
+      brand: product.brand || '',
+      size: product.size || '',
+      sku: product.sku || '',
+      category: product.category || 'Skin',
+      status: product.status || 'Featured Products',
+      inStock: product.availability?.inStock ?? true,
+      stockCount: product.availability?.stockCount || '',
+      currentPrice: product.pricing?.currentPrice || '',
+      originalPrice: product.pricing?.originalPrice || '',
+      briefDescription: product.briefDescription?.join('\n') || '',
+      tags: product.tags?.join(', ') || '',
+      images: product.images || ''
+    });
+    setIsUpdateModalOpen(true);
+    setActiveDropdownId(null);
+  };
+
   return (
-    <div className="bg-white rounded-[20px] border border-gray-200 shadow-sm p-6 space-y-6 relative">
+    <div className="bg-white rounded-[20px] border border-gray-200 shadow-sm p-6 space-y-6 relative" ref={dropdownRef}>
       
       {/* HEADER SECTION */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -178,7 +298,6 @@ const Products = () => {
         {/* EXPANDABLE ADVANCED FILTER PANEL */}
         {isFilterOpen && (
           <div className="absolute right-0 top-12 z-20 bg-white border border-gray-200 rounded-2xl p-4 shadow-lg w-64 space-y-3 to-top-animation">
-            {/* শর্টিং ড্রপডাউন (নতুন যুক্ত করা হয়েছে) */}
             <div>
               <label className="block text-[10px] font-bold text-gray-400 uppercase mb-1">Sort Order</label>
               <select 
@@ -235,7 +354,6 @@ const Products = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100/70 text-xs text-slate-700">
-            {/* এখানে processed প্রোডাক্টলিস্ট ম্যাপ করা হচ্ছে */}
             {finalProcessedProducts.length === 0 ? (
               <tr>
                 <td colSpan="8" className="text-center py-8 text-gray-400 font-medium">No skincare products found.</td>
@@ -282,8 +400,31 @@ const Products = () => {
                     <div>{product.sku}</div>
                     <div className="text-[10px] text-gray-500 font-semibold">{product.size}</div>
                   </td>
-                  <td className="py-4 pr-4 text-center">
-                    <button onClick={handleAction} className="text-gray-400 hover:text-gray-600 text-sm font-bold">•••</button>
+                  {/* থ্রি-ডট অ্যাকশন এবং ছোট ড্রপডাউন মেনু */}
+                  <td className="py-4 pr-4 text-center relative">
+                    <button 
+                      onClick={() => setActiveDropdownId(activeDropdownId === product?._id ? null : product?._id)}
+                      className="text-gray-400 hover:text-gray-600 text-sm font-bold p-2"
+                    >
+                      •••
+                    </button>
+                    
+                    {activeDropdownId === product?._id && (
+                      <div className="absolute right-4 mt-1 w-28 bg-white border border-gray-100 rounded-xl shadow-lg z-30 py-1 text-left text-xs font-semibold text-slate-700 animate-in fade-in slide-in-from-top-1 duration-100">
+                        <button
+                          onClick={() => openUpdateModal(product)}
+                          className="w-full text-left px-4 py-2 hover:bg-slate-50 flex items-center gap-2"
+                        >
+                          ✏️ Update
+                        </button>
+                        <button
+                          onClick={() => { handleDeleteProduct(product?._id); setActiveDropdownId(null); }}
+                          className="w-full text-left px-4 py-2 hover:bg-rose-50 text-rose-600 flex items-center gap-2"
+                        >
+                          🗑️ Remove
+                        </button>
+                      </div>
+                    )}
                   </td>
                 </tr>
               ))
@@ -292,35 +433,10 @@ const Products = () => {
         </table>
       </div>
 
-
-
-          {/* Action modal section start  */}
-
-
-      {
-        isModalOpen && 
-        <div>
-          helllo world !!!!!!!!!
-        </div>
-      }
-
-
-
-
-
-
-
-
-          {/* Action modal section end  */}
-
-
-
-
-      {/* INTEGRATED ADD SKINCARE PRODUCT MODAL */}
+      {/* INTEGRATED ADD SKINCARE PRODUCT MODAL (অরিজিনাল ডিজাইন অক্ষত) */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center z-50 p-4 overflow-y-auto">
           <div className="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl border border-gray-100 my-8 animate-in fade-in zoom-in-95 duration-200">
-            
             <div className="flex items-center justify-between pb-4 border-b border-gray-100">
               <div>
                 <h3 className="text-sm font-bold text-slate-800">Add New Product to Database</h3>
@@ -330,51 +446,29 @@ const Products = () => {
             </div>
             
             <form onSubmit={handleAddProductSubmit} className="space-y-4 mt-4">
-              
-              {/* Title & Brand */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-gray-500 mb-1">Product Title</label>
-                  <input 
-                    type="text" required name="title" value={modalFormData.title} onChange={handleModalChange}
-                    placeholder="e.g. Tea Tree Skin Clearing Facial Wash"
-                    className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]"
-                  />
+                  <input type="text" required name="title" value={modalFormData.title} onChange={handleModalChange} placeholder="e.g. Tea Tree Skin Clearing Facial Wash" className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]" />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-gray-500 mb-1">Brand Name</label>
-                  <input 
-                    type="text" required name="brand" value={modalFormData.brand} onChange={handleModalChange}
-                    placeholder="e.g. The Body Shop"
-                    className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]"
-                  />
+                  <input type="text" required name="brand" value={modalFormData.brand} onChange={handleModalChange} placeholder="e.g. The Body Shop" className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]" />
                 </div>
               </div>
 
-              {/* Size, SKU, Category, Status */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-gray-500 mb-1">Size</label>
-                  <input 
-                    type="text" name="size" value={modalFormData.size} onChange={handleModalChange}
-                    placeholder="e.g. 250ml"
-                    className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]"
-                  />
+                  <input type="text" name="size" value={modalFormData.size} onChange={handleModalChange} placeholder="e.g. 250ml" className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]" />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-gray-500 mb-1">SKU</label>
-                  <input 
-                    type="text" name="sku" value={modalFormData.sku} onChange={handleModalChange}
-                    placeholder="e.g. 33061"
-                    className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]"
-                  />
+                  <input type="text" name="sku" value={modalFormData.sku} onChange={handleModalChange} placeholder="e.g. 33061" className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]" />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-gray-500 mb-1">Category</label>
-                  <select 
-                    name="category" value={modalFormData.category} onChange={handleModalChange}
-                    className="w-full border border-gray-200 rounded-xl p-2.5 text-xs bg-white text-slate-700 outline-none"
-                  >
+                  <select name="category" value={modalFormData.category} onChange={handleModalChange} className="w-full border border-gray-200 rounded-xl p-2.5 text-xs bg-white text-slate-700 outline-none">
                     <option value="Skin">Skin</option>
                     <option value="Hair">Hair</option>
                     <option value="Makeup">Makeup</option>
@@ -390,10 +484,7 @@ const Products = () => {
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-gray-500 mb-1">Status</label>
-                  <select 
-                    name="status" value={modalFormData.status} onChange={handleModalChange}
-                    className="w-full border border-gray-200 rounded-xl p-2.5 text-xs bg-white text-slate-700 outline-none"
-                  >
+                  <select name="status" value={modalFormData.status} onChange={handleModalChange} className="w-full border border-gray-200 rounded-xl p-2.5 text-xs bg-white text-slate-700 outline-none">
                     <option value="Featured Products">Featured Products</option>
                     <option value="Best Selling">Best Selling</option>
                     <option value="New Arrivals">New Arrivals</option>
@@ -402,83 +493,141 @@ const Products = () => {
                 </div>
               </div>
 
-              {/* Pricing & Stock Details */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-50/50 p-3 rounded-xl border border-gray-100">
                 <div>
                   <label className="block text-xs font-semibold text-gray-500 mb-1">Original Price (৳)</label>
-                  <input 
-                    type="number" required name="originalPrice" value={modalFormData.originalPrice} onChange={handleModalChange}
-                    placeholder="1650"
-                    className="w-full bg-white border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none"
-                  />
+                  <input type="number" required name="originalPrice" value={modalFormData.originalPrice} onChange={handleModalChange} placeholder="1650" className="w-full bg-white border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-gray-500 mb-1">Current Price (৳)</label>
-                  <input 
-                    type="number" required name="currentPrice" value={modalFormData.currentPrice} onChange={handleModalChange}
-                    placeholder="1350"
-                    className="w-full bg-white border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none"
-                  />
+                  <input type="number" required name="currentPrice" value={modalFormData.currentPrice} onChange={handleModalChange} placeholder="1350" className="w-full bg-white border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-gray-500 mb-1">Stock Count</label>
-                  <input 
-                    type="number" required name="stockCount" value={modalFormData.stockCount} onChange={handleModalChange}
-                    placeholder="4"
-                    className="w-full bg-white border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none"
-                  />
+                  <input type="number" required name="stockCount" value={modalFormData.stockCount} onChange={handleModalChange} placeholder="4" className="w-full bg-white border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none" />
                 </div>
               </div>
 
-              {/* Image & Tags */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-gray-500 mb-1">Image URL</label>
-                  <input 
-                    type="url" name="images" value={modalFormData.images} onChange={handleModalChange}
-                    placeholder="https://example.com/product.jpg"
-                    className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none"
-                  />
+                  <input type="url" name="images" value={modalFormData.images} onChange={handleModalChange} placeholder="https://example.com/product.jpg" className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-gray-500 mb-1">Tags (Comma Separated)</label>
-                  <input 
-                    type="text" name="tags" value={modalFormData.tags} onChange={handleModalChange}
-                    placeholder="Skin, Facial Wash, Tea Tree"
-                    className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none"
-                  />
+                  <input type="text" name="tags" value={modalFormData.tags} onChange={handleModalChange} placeholder="Skin, Facial Wash, Tea Tree" className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none" />
                 </div>
               </div>
 
-              {/* Brief Descriptions */}
               <div className="space-y-2">
                 <label className="block text-xs font-semibold text-gray-500">Brief Description Points (Enter each point in a new line)</label>
-                <textarea 
-                  name="briefDescription"
-                  value={modalFormData.briefDescription}
-                  onChange={handleModalChange}
-                  placeholder={'Point 1\nPoint 2\nPoint 3'}
-                  rows={3}
-                  className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]"
-                />
+                <textarea name="briefDescription" value={modalFormData.briefDescription} onChange={handleModalChange} placeholder={'Point 1\nPoint 2\nPoint 3'} rows={3} className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]" />
               </div>
 
-              {/* Form Actions */}
               <div className="pt-4 border-t border-gray-100 flex justify-end gap-3">
-                <button 
-                  type="button" onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 bg-gray-50 text-gray-500 text-xs font-medium rounded-xl hover:bg-gray-100 transition-all"
-                >
-                  Cancel
-                </button>
-                <button 
-                  type="submit"
-                  className="px-5 py-2 bg-[#5A57FF] hover:bg-[#4845e0] text-white text-xs font-semibold rounded-xl shadow-xs transition-all"
-                >
-                  Upload Product
-                </button>
+                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 bg-gray-50 text-gray-500 text-xs font-medium rounded-xl hover:bg-gray-100 transition-all">Cancel</button>
+                <button type="submit" className="px-5 py-2 bg-[#5A57FF] hover:bg-[#4845e0] text-white text-xs font-semibold rounded-xl shadow-xs transition-all">Upload Product</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* --- INTEGRATED UPDATE SKINCARE PRODUCT MODAL (হুবহু একই লেআউট ডিজাইন) --- */}
+      {isUpdateModalOpen && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center z-50 p-4 overflow-y-auto">
+          <div className="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl border border-gray-100 my-8 animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between pb-4 border-b border-gray-100">
+              <div>
+                <h3 className="text-sm font-bold text-slate-800">Update Existing Product</h3>
+                <p className="text-[11px] text-gray-400">Modifying configuration variables for: <span className="text-[#5A57FF] font-semibold">{selectedProduct?.title}</span></p>
+              </div>
+              <button onClick={() => setIsUpdateModalOpen(false)} className="text-gray-400 hover:text-gray-600 text-sm">✕</button>
+            </div>
+            
+            <form onSubmit={handleUpdateProductSubmit} className="space-y-4 mt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-1">Product Title</label>
+                  <input type="text" required name="title" value={updateFormData.title} onChange={handleUpdateChange} className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]" />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-1">Brand Name</label>
+                  <input type="text" required name="brand" value={updateFormData.brand} onChange={handleUpdateChange} className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]" />
+                </div>
               </div>
 
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-1">Size</label>
+                  <input type="text" name="size" value={updateFormData.size} onChange={handleUpdateChange} className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]" />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-1">SKU</label>
+                  <input type="text" name="sku" value={updateFormData.sku} onChange={handleUpdateChange} className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]" />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-1">Category</label>
+                  <select name="category" value={updateFormData.category} onChange={handleUpdateChange} className="w-full border border-gray-200 rounded-xl p-2.5 text-xs bg-white text-slate-700 outline-none">
+                    <option value="Skin">Skin</option>
+                    <option value="Hair">Hair</option>
+                    <option value="Makeup">Makeup</option>
+                    <option value="Personal-care">Personal care</option>
+                    <option value="Mom-Baby">Mom & Baby</option>
+                    <option value="Fragrance">Fragrance</option>
+                    <option value="UNDERGARMENTS">UNDERGARMENTS</option>
+                    <option value="COMBO">COMBO</option>
+                    <option value="JEWELLERY">JEWELLERY</option>
+                    <option value="CLEARANCE-SALE">CLEARANCE SALE</option>
+                    <option value="MEN">MEN</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-1">Status</label>
+                  <select name="status" value={updateFormData.status} onChange={handleUpdateChange} className="w-full border border-gray-200 rounded-xl p-2.5 text-xs bg-white text-slate-700 outline-none">
+                    <option value="Featured Products">Featured Products</option>
+                    <option value="Best Selling">Best Selling</option>
+                    <option value="New Arrivals">New Arrivals</option>
+                    <option value="Regular">Regular</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-50/50 p-3 rounded-xl border border-gray-100">
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-1">Original Price (৳)</label>
+                  <input type="number" required name="originalPrice" value={updateFormData.originalPrice} onChange={handleUpdateChange} className="w-full bg-white border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none" />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-1">Current Price (৳)</label>
+                  <input type="number" required name="currentPrice" value={updateFormData.currentPrice} onChange={handleUpdateChange} className="w-full bg-white border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none" />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-1">Stock Count</label>
+                  <input type="number" required name="stockCount" value={updateFormData.stockCount} onChange={handleUpdateChange} className="w-full bg-white border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-1">Image URL</label>
+                  <input type="url" name="images" value={updateFormData.images} onChange={handleUpdateChange} className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none" />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-1">Tags (Comma Separated)</label>
+                  <input type="text" name="tags" value={updateFormData.tags} onChange={handleUpdateChange} className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none" />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-xs font-semibold text-gray-500">Brief Description Points (Enter each point in a new line)</label>
+                <textarea name="briefDescription" value={updateFormData.briefDescription} onChange={handleUpdateChange} rows={3} className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]" />
+              </div>
+
+              <div className="pt-4 border-t border-gray-100 flex justify-end gap-3">
+                <button type="button" onClick={() => setIsUpdateModalOpen(false)} className="px-4 py-2 bg-gray-50 text-gray-500 text-xs font-medium rounded-xl hover:bg-gray-100 transition-all">Cancel</button>
+                <button type="submit" className="px-5 py-2 bg-[#5A57FF] hover:bg-[#4845e0] text-white text-xs font-semibold rounded-xl shadow-xs transition-all">Save Changes</button>
+              </div>
             </form>
           </div>
         </div>
