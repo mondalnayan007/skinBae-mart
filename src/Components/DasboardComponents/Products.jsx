@@ -1,50 +1,35 @@
 import React, { useEffect, useState } from 'react';
 
 const Products = () => {
-  // ১. আপনার ডাটা স্ট্রাকচার অনুযায়ী স্কিনকেয়ার প্রোডাক্টস ডামি ডাটা লিস্ট
   const [products, setProducts] = useState([]);
 
-  const apiURL1= "http://localhost:4000";
-    const apiURL2 = "https://skin-bae-mart-server.vercel.app";
+  const apiURL1 = "http://localhost:4000";
+  const apiURL2 = "https://skin-bae-mart-server.vercel.app";
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch(`${apiURL1}/products`)
-    .then(res=>res.json())
-    .then(data => {
-      setProducts(data);
-    })
-  },[])
+      .then(res => res.json())
+      .then(data => {
+        setProducts(data);
+      })
+      .catch(err => console.error("Error fetching products:", err));
+  }, []);
 
-  // ২. সার্চ, ফিল্টার ও পেজ কন্ট্রোল স্টেট
+  // সার্চ, ফিল্টার, শর্ট ও পেজ কন্ট্রোল স্টেট
   const [searchQuery, setSearchQuery] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [stockFilter, setStockFilter] = useState("all"); 
   const [statusFilter, setStatusFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("default"); // শর্টিং এর জন্য নতুন স্টেট
 
-  // ৩. মডেল ফর্মের জন্য ডেডিকেটেড স্টেট (আপনার JSON আর্কিটেকচার অনুযায়ী)
+  // মডেল ফর্মের জন্য স্টেট
   const [modalFormData, setModalFormData] = useState({
     title: '', brand: '', size: '', sku: '', category: 'Skin', status: 'Featured Products',
     inStock: true, stockCount: '', currentPrice: '', originalPrice: '',
-    briefDescription: ['', '', '', ''], tags: '', images: ''
+    briefDescription: '', tags: '', images: ''
   });
 
-  // ৪. সার্চ এবং ফিল্টারিং লজিক
-  const filteredProducts = products.filter(product => {
-    const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          product.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          product.category.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    const matchesStock = stockFilter === "all" ? true :
-                         stockFilter === "inStock" ? product.availability.inStock : 
-                         !product.availability.inStock;
-
-    const matchesStatus = statusFilter === "all" ? true : product.status === statusFilter;
-    
-    return matchesSearch && matchesStock && matchesStatus;
-  });
-
-  // ৫. মডেল ইনপুট হ্যান্ডলার
   const handleModalChange = (e) => {
     const { name, value, type, checked } = e.target;
     setModalFormData({
@@ -53,13 +38,35 @@ const Products = () => {
     });
   };
 
-  const handleDescriptionChange = (index, value) => {
-    const updatedDesc = [...modalFormData.briefDescription];
-    updatedDesc[index] = value;
-    setModalFormData({ ...modalFormData, briefDescription: updatedDesc });
-  };
+  // ১. প্রথমে ডাটা ফিল্টার করা হচ্ছে
+  const filteredProducts = products.filter(product => {
+    const matchesSearch = 
+      (product.title?.toLowerCase() || "").includes(searchQuery.toLowerCase()) || 
+      (product.brand?.toLowerCase() || "").includes(searchQuery.toLowerCase()) ||
+      (product.category?.toLowerCase() || "").includes(searchQuery.toLowerCase());
+    
+    const matchesStock = stockFilter === "all" ? true :
+                         stockFilter === "inStock" ? product.availability?.inStock : 
+                         !product.availability?.inStock;
 
-  // ৬. নতুন স্কিনকেয়ার প্রোডাক্ট যুক্ত করার সাবমিট লজিক
+    const matchesStatus = statusFilter === "all" ? true : product.status === statusFilter;
+    
+    return matchesSearch && matchesStock && matchesStatus;
+  });
+
+  // ২. ফিল্টার করা ডাটাকে শর্টিং লজিক অনুযায়ী সাজানো হচ্ছে
+  const finalProcessedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortBy === "latest") {
+      // যদি ডাটাবেজে MongoDB-এর _id থাকে, তবে সেটির টাইমস্ট্যাম্প দিয়ে বা নরমাল id দিয়ে শর্ট হবে
+      const idA = a._id || a.id || 0;
+      const idB = b._id || b.id || 0;
+      
+      // বড় আইডি (Latest) আগে আসবে
+      return idB > idA ? 1 : -1;
+    }
+    return 0; // Default (ডাটাবেজের নিজস্ব সিরিয়াল)
+  });
+
   const handleAddProductSubmit = (e) => {
     e.preventDefault();
 
@@ -70,7 +77,6 @@ const Products = () => {
     const stockCountNum = parseInt(modalFormData.stockCount) || 0;
 
     const formattedProduct = {
-      id: Date.now().toString(),
       title: modalFormData.title,
       brand: modalFormData.brand,
       size: modalFormData.size,
@@ -89,19 +95,34 @@ const Products = () => {
         savings: savings,
         discountPercentage: discountPercentage
       },
-      briefDescription: modalFormData.briefDescription.filter(desc => desc.trim() !== ''),
+      briefDescription: modalFormData.briefDescription.split('\n').filter(line => line.trim() !== ''),
       tags: modalFormData.tags.split(',').map(tag => tag.trim()).filter(tag => tag !== ''),
       images: modalFormData.images || "https://bk.shajgoj.com/storage/2018/05/bodyshop-teatree-toner-600.jpg"
     };
 
-    setProducts([formattedProduct, ...products]); // লিস্টের শুরুতে অ্যাড হবে
-    setIsModalOpen(false); // মডেল বন্ধ হবে
-    
-    // ফর্ম রিসেট
-    setModalFormData({
-      title: '', brand: '', size: '', sku: '', category: 'Skin', status: 'Featured Products',
-      inStock: true, stockCount: '', currentPrice: '', originalPrice: '',
-      briefDescription: ['', '', '', ''], tags: '', images: ''
+    fetch(`${apiURL1}/products`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(formattedProduct)
+    })
+    .then(res => res.json())
+    .then(insertedProduct => {
+      const productWithId = insertedProduct.insertedId ? { ...formattedProduct, _id: insertedProduct.insertedId } : formattedProduct;
+      
+      setProducts([productWithId, ...products]); 
+      setIsModalOpen(false); 
+      
+      setModalFormData({
+        title: '', brand: '', size: '', sku: '', category: 'Skin', status: 'Featured Products',
+        inStock: true, stockCount: '', currentPrice: '', originalPrice: '',
+        briefDescription: '', tags: '', images: ''
+      });
+    })
+    .catch(err => {
+      console.error("Error posting product:", err);
+      alert("Something went wrong while uploading product.");
     });
   };
 
@@ -146,12 +167,24 @@ const Products = () => {
             isFilterOpen ? 'bg-slate-50 border-[#5A57FF] text-[#5A57FF]' : 'border-gray-200 text-slate-700 hover:bg-gray-50'
           }`}
         >
-          <span>🎛️</span> Filter
+          <span>🎛️</span> Filter & Sort
         </button>
 
         {/* EXPANDABLE ADVANCED FILTER PANEL */}
         {isFilterOpen && (
           <div className="absolute right-0 top-12 z-20 bg-white border border-gray-200 rounded-2xl p-4 shadow-lg w-64 space-y-3 to-top-animation">
+            {/* শর্টিং ড্রপডাউন (নতুন যুক্ত করা হয়েছে) */}
+            <div>
+              <label className="block text-[10px] font-bold text-gray-400 uppercase mb-1">Sort Order</label>
+              <select 
+                value={sortBy} onChange={(e) => setSortBy(e.target.value)}
+                className="w-full bg-gray-50 border border-gray-200 rounded-lg p-2 text-xs text-slate-700 outline-none font-medium"
+              >
+                <option value="default">Default Order</option>
+                <option value="latest">✨ Latest Added (First)</option>
+              </select>
+            </div>
+            
             <div>
               <label className="block text-[10px] font-bold text-gray-400 uppercase mb-1">Stock Status</label>
               <select 
@@ -163,6 +196,7 @@ const Products = () => {
                 <option value="outOfStock">Out of Stock</option>
               </select>
             </div>
+            
             <div>
               <label className="block text-[10px] font-bold text-gray-400 uppercase mb-1">Filter By Status</label>
               <select 
@@ -196,13 +230,14 @@ const Products = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100/70 text-xs text-slate-700">
-            {filteredProducts.length === 0 ? (
+            {/* এখানে processed প্রোডাক্টলিস্ট ম্যাপ করা হচ্ছে */}
+            {finalProcessedProducts.length === 0 ? (
               <tr>
                 <td colSpan="8" className="text-center py-8 text-gray-400 font-medium">No skincare products found.</td>
               </tr>
             ) : (
-              filteredProducts.map((product) => (
-                <tr key={product.id} className="hover:bg-gray-50/40 transition-colors">
+              finalProcessedProducts.map((product, index) => (
+                <tr key={product._id || product.id || index} className="hover:bg-gray-50/40 transition-colors">
                   <td className="py-4 pl-4">
                     <input type="checkbox" className="rounded border-gray-300" />
                   </td>
@@ -220,17 +255,17 @@ const Products = () => {
                   <td className="py-4 text-gray-500 font-medium">{product.category}</td>
                   <td className="py-4 text-gray-500 font-medium">{product.brand}</td>
                   <td className="py-4 font-bold text-slate-800">
-                    {product.pricing.currency}{product.pricing.currentPrice.toLocaleString()} 
-                    {product.pricing.discountPercentage > 0 && (
+                    {product.pricing?.currency}{product.pricing?.currentPrice?.toLocaleString()} 
+                    {product.pricing?.discountPercentage > 0 && (
                       <span className="text-[10px] font-medium text-gray-400 line-through ml-1.5">
-                        {product.pricing.currency}{product.pricing.originalPrice}
+                        {product.pricing?.currency}{product.pricing?.originalPrice}
                       </span>
                     )}
                   </td>
                   <td className="py-4">
-                    {product.availability.inStock ? (
+                    {product.availability?.inStock ? (
                       <span className="inline-block text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-600">
-                        In Stock ({product.availability.stockCount})
+                        In Stock ({product.availability?.stockCount})
                       </span>
                     ) : (
                       <span className="inline-block text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-600">
@@ -252,9 +287,7 @@ const Products = () => {
         </table>
       </div>
 
-      {/* ======================================================== */}
       {/* INTEGRATED ADD SKINCARE PRODUCT MODAL */}
-      {/* ======================================================== */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center z-50 p-4 overflow-y-auto">
           <div className="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl border border-gray-100 my-8 animate-in fade-in zoom-in-95 duration-200">
@@ -316,6 +349,14 @@ const Products = () => {
                     <option value="Skin">Skin</option>
                     <option value="Hair">Hair</option>
                     <option value="Makeup">Makeup</option>
+                    <option value="Personal-care">Personal care</option>
+                    <option value="Mom-Baby">Mom & Baby</option>
+                    <option value="Fragrance">Fragrance</option>
+                    <option value="UNDERGARMENTS">UNDERGARMENTS</option>
+                    <option value="COMBO">COMBO</option>
+                    <option value="JEWELLERY">JEWELLERY</option>
+                    <option value="CLEARANCE-SALE">CLEARANCE SALE</option>
+                    <option value="MEN">MEN</option>
                   </select>
                 </div>
                 <div>
@@ -325,6 +366,7 @@ const Products = () => {
                     className="w-full border border-gray-200 rounded-xl p-2.5 text-xs bg-white text-slate-700 outline-none"
                   >
                     <option value="Featured Products">Featured Products</option>
+                    <option value="Best Selling">Best Selling</option>
                     <option value="New Arrivals">New Arrivals</option>
                     <option value="Regular">Regular</option>
                   </select>
@@ -379,17 +421,17 @@ const Products = () => {
                 </div>
               </div>
 
-              {/* Bullet Descriptions Array */}
+              {/* Brief Descriptions */}
               <div className="space-y-2">
-                <label className="block text-xs font-semibold text-gray-500">Brief Description Points</label>
-                {modalFormData.briefDescription.map((desc, index) => (
-                  <input 
-                    key={index} type="text" value={desc}
-                    onChange={(e) => handleDescriptionChange(index, e.target.value)}
-                    placeholder={`Bullet point ${index + 1}`}
-                    className="w-full border border-gray-200 rounded-xl p-2 text-xs focus:outline-none focus:border-[#5A57FF]"
-                  />
-                ))}
+                <label className="block text-xs font-semibold text-gray-500">Brief Description Points (Enter each point in a new line)</label>
+                <textarea 
+                  name="briefDescription"
+                  value={modalFormData.briefDescription}
+                  onChange={handleModalChange}
+                  placeholder={'Point 1\nPoint 2\nPoint 3'}
+                  rows={3}
+                  className="w-full border border-gray-200 rounded-xl p-2.5 text-xs focus:outline-none focus:border-[#5A57FF]"
+                />
               </div>
 
               {/* Form Actions */}
