@@ -9,6 +9,7 @@ import Wishlist from "../Pages/Wishlist/Wishlist";
 import Cart from "../Pages/Cart/Cart";
 import CategoryLayout from "../Pages/CategoryLayout/CategoryLayout";
 import Checkout from "../Pages/Checkout/Checkout";
+import PaymentSuccess from "../Pages/PaymentSuccess/PaymentSuccess";
 
 
 export const router = createBrowserRouter([
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
         {
           path:'/checkout',
           Component: Checkout
+        },
+        {
+          path:'/payment-success',
+          Component: PaymentSuccess
         },
         {
           path:'/category',
