@@ -8,6 +8,7 @@ import Register from "../Pages/Register/Register";
 import Wishlist from "../Pages/Wishlist/Wishlist";
 import Cart from "../Pages/Cart/Cart";
 import CategoryLayout from "../Pages/CategoryLayout/CategoryLayout";
+import Checkout from "../Pages/Checkout/Checkout";
 
 
 export const router = createBrowserRouter([
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
         {
           path:'/cart',
           Component: Cart
+        },
+        {
+          path:'/checkout',
+          Component: Checkout
         },
         {
           path:'/category',

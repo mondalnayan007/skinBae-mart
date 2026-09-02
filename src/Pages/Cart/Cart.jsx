@@ -1,14 +1,18 @@
 import React, { useState, useEffect, use } from 'react';
 import Swal from 'sweetalert2';
 import AuthContext from '../../Context/AuthContext';
+import { useNavigate } from 'react-router';
 
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loadingCart, setLoadingCart] = useState(true);
+  console.log(cartItems);
+  const navigate = useNavigate();
 
   // Auth Context থেকে লগইন ইউজার নেওয়া হচ্ছে
   const { user } = use(AuthContext);
+  console.log(user);
   const apiURL1 = "http://localhost:4000";
 
   // 🔄 ডাটাবেজ থেকে কার্ট ডাটা লোড করার ফাংশন
@@ -103,18 +107,27 @@ const updateQuantity = (productId, delta, currentQty) => {
     });
   };
 
-
-
-
-  const handlePayment =()=>{
-    alert('Payment is processing......')
-  }
-
   // 🧮 ডাইনামিক ক্যালকুলেশন (ডাটাবেজের স্কিমা স্ট্রাকচার অনুযায়ী মডিফাইড)
   // নোটে রাখুন: আপনার প্রোডাক্ট স্কিমায় 'price' এবং 'quantity' যেভাবে আছে সেভাবে গুণ করা হয়েছে।
   const subtotal = cartItems.reduce((acc, item) => acc + (Number(item.price || 0) * Number(item.quantity || 0)), 0);
   const shipping = subtotal > 0 ? 120 : 0; 
   const total = subtotal + shipping;
+  
+
+
+
+  const handlePayment =()=>{
+    navigate('/checkout', {
+      state: {
+        cartItems,
+        subtotal,
+        shipping,
+        total,
+      },
+    });
+  }
+
+  
 
   // ইউজার লগইন না থাকলে মেসেজ দেখাবে
   if (!user) {

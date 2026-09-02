@@ -13,7 +13,7 @@ const ProductDetails = () => {
   // Auth Context থেকে ইউজার নেওয়া হচ্ছে
   const { user } = use(AuthContext);
 
-  const apiURL1 = "http://localhost:4000";
+  const apiURL1 = 'http://localhost:4000';
 
   useEffect(() => {
     fetch(`${apiURL1}/product/${id}`)
