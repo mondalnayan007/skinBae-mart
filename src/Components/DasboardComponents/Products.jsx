@@ -4,11 +4,11 @@ import Swal from 'sweetalert2';
 const Products = () => {
   const [products, setProducts] = useState([]);
 
-  const apiURL1 = "http://localhost:4000";
-  const apiURL2 = "https://skin-bae-mart-server.vercel.app";
+
+  const serverURL = import.meta.env.VITE_SERVER_URL;
 
   useEffect(() => {
-    fetch(`${apiURL1}/products`)
+    fetch(`${serverURL}/products`)
       .then(res => res.json())
       .then(data => {
         setProducts(data);
@@ -130,7 +130,7 @@ const Products = () => {
       images: modalFormData.images || "https://bk.shajgoj.com/storage/2018/05/bodyshop-teatree-toner-600.jpg"
     };
 
-    fetch(`${apiURL1}/products`, {
+    fetch(`${serverURL}/products`, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(formattedProduct)
@@ -188,7 +188,7 @@ const Products = () => {
       images: updateFormData.images
     };
 
-    fetch(`${apiURL1}/products/${selectedProduct._id}`, {
+    fetch(`${serverURL}/products/${selectedProduct._id}`, {
       method: 'PUT',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(updatedData)
@@ -217,7 +217,7 @@ const Products = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`${apiURL1}/products/${id}`, { method: 'DELETE' })
+        fetch(`${serverURL}/products/${id}`, { method: 'DELETE' })
         .then(res => res.json())
         .then(data => {
           if (data.deletedCount > 0) {

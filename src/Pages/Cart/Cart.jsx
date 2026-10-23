@@ -12,8 +12,9 @@ const Cart = () => {
 
   // Auth Context থেকে লগইন ইউজার নেওয়া হচ্ছে
   const { user } = use(AuthContext);
-  console.log(user);
-  const apiURL1 = "http://localhost:4000";
+  
+  
+  const serverURL = import.meta.env.VITE_SERVER_URL;
 
   // 🔄 ডাটাবেজ থেকে কার্ট ডাটা লোড করার ফাংশন
   const fetchCartData = () => {
@@ -24,7 +25,7 @@ const Cart = () => {
     }
 
     setLoadingCart(true);
-    fetch(`${apiURL1}/api/cart/${user.email}`)
+    fetch(`${serverURL}/api/cart/${user.email}`)
       .then(res => res.json())
       .then(data => {
         setCartItems(data);

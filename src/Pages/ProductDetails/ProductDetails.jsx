@@ -14,9 +14,10 @@ const ProductDetails = () => {
   const { user } = use(AuthContext);
 
   const apiURL1 = 'http://localhost:4000';
+  const serverURL = import.meta.env.VITE_SERVER_URL;
 
   useEffect(() => {
-    fetch(`${apiURL1}/product/${id}`)
+    fetch(`${serverURL}/product/${id}`)
       .then(res => {
         if (!res.ok) throw new Error(`Server error: ${res.status}`);
         return res.json();
@@ -100,7 +101,7 @@ const ProductDetails = () => {
     };
 
     // ৩. ব্যাকএন্ড ডাটাবেজ API কল
-    fetch(`${apiURL1}/api/cart`, {
+    fetch(`${serverURL}/api/cart`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(cartItem)
