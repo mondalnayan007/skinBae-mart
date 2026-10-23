@@ -7,7 +7,7 @@ const CategoryLayout = () => {
     const [searchTerms, setSearchTerms] = useState('');
     const [loading, setLoading] = useState(false); 
     const apiURL1= "http://localhost:4000";
-    const apiURL2 = "https://skin-bae-mart-server.vercel.app";
+   const serverURL = import.meta.env.VITE_SERVER_URL;
     
     // URL থেকে category name নেওয়ার জন্য
     const { categoryName } = useParams();
@@ -21,10 +21,10 @@ const CategoryLayout = () => {
         // ডেটা ফেচ শুরু হওয়ার আগে লোডিং ট্রু করে দেওয়া হলো
         setLoading(true);
 
-        let apiUrl = `${apiURL1}/category`; 
+        let apiUrl = `${serverURL}/category`; 
         
         if (categoryName) {
-            apiUrl = `${apiURL1}/category/${categoryName}`; 
+            apiUrl = `${serverURL}/category/${categoryName}`; 
         }
 
         // ব্যাকএন্ড সার্চ হ্যান্ডেল করার জন্য কুয়েরি প্যারামিটার তৈরি
