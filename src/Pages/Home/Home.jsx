@@ -8,23 +8,24 @@ import TopBrands from '../../Components/TopBrands';
 import Reviews from '../../Components/Reviews/Reviews';
 
 const Home = () => {
-  // const products = useLoaderData() || [];
+  const [products, setProducts] = useState([]);
+  console.log(products);
 
-  const [products,setProducts] = useState([]);
+  // .env ফাইল থেকে সার্ভার ইউআরএল ফেচ করা হচ্ছে (Vite-এর ক্ষেত্রে সাধারণত VITE_ দিয়ে শুরু হয়)
+  const serverURL = import.meta.env.VITE_SERVER_URL;
+  console.log(serverURL);
 
+  useEffect(() => {
+    if (!serverURL) return;
 
-    const apiURL1= "http://localhost:4000";
-    const apiURL2 = "https://skin-bae-mart-server.vercel.app";
+    fetch(`${serverURL}/products`)
+      .then(res => res.json())
+      .then(data => {
+        setProducts(data);
+      })
+      .catch(error => console.error("Error fetching products:", error));
+  }, [serverURL]);
 
-
-
-  useEffect(()=>{
-    fetch(`${apiURL1}/product`)
-    .then(res =>res.json())
-    .then(data => {
-      setProducts(data)
-    })
-  },[])
   // ১. ট্যাব ফিল্টারিং স্টেট: ডিফল্টভাবে null থাকবে (কোনো ট্যাব সিলেক্টেড থাকবে না)
   const [activeTab, setActiveTab] = useState(null);
 
@@ -32,8 +33,6 @@ const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // ৩. ডাইনামিক ফিল্টারিং লজিক: 
-  // activeTab যদি null হয় (কোনো ক্লিক না পড়ে), তবে সব প্রোডাক্ট দেখাবে। 
-  // ক্লিক পড়লে কেবল সেই নির্দিষ্ট status অনুযায়ী ফিল্টার হবে।
   const filteredProducts = !activeTab
     ? products 
     : products.filter((product) => product.status?.toLowerCase() === activeTab.toLowerCase());
@@ -84,7 +83,6 @@ const Home = () => {
                 key={tab}
                 onClick={() => handleTabChange(tab)}
                 className={`text-xs sm:text-sm font-semibold px-4 py-2 rounded-full cursor-pointer whitespace-nowrap transition-all duration-300 ${
-                  // শুধুমাত্র activeTab-এর সাথে নাম মিললেই অ্যাক্টিভ কালার পাবে, শুরুতে সব ফাঁকা থাকবে
                   activeTab === tab
                     ? 'bg-[#7C4DFF] text-white shadow-md shadow-[#7C4DFF]/20'
                     : 'text-gray-500 hover:text-gray-950 hover:bg-gray-50'
@@ -105,7 +103,7 @@ const Home = () => {
                 <div
                   className="flex gap-4 transition-transform ease-[cubic-bezier(0.25,1,0.5,1)] duration-700 sm:will-change-transform"
                   style={{
-                    transform: window.innerWidth >= 640 ? `translateX(-${currentIndex * (100 / visibleCards)}%)` : 'none',
+                    transform: typeof window !== 'undefined' && window.innerWidth >= 640 ? `translateX(-${currentIndex * (100 / visibleCards)}%)` : 'none',
                   }}
                 >
                   {filteredProducts.map((product) => (
@@ -157,7 +155,6 @@ const Home = () => {
         </div>
       </div>
 
-
       <div>
         <PopularCategories></PopularCategories>
       </div>
@@ -169,7 +166,6 @@ const Home = () => {
       <div>
         <Reviews></Reviews>
       </div>
-
     </div>
   );
 };
