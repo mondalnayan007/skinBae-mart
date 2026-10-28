@@ -22,7 +22,7 @@ const Checkout = () => {
 
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const apiURL1 = "http://localhost:4000";
+  const apiURL1 = import.meta.env.VITE_SERVER_URL;
 
   // Cart ফাঁকা থাকলে বা সরাসরি লিঙ্ক ওপেন করলে কার্ট পেজে ব্যাক পাঠাবে
   if (!cartItems || cartItems.length === 0) {

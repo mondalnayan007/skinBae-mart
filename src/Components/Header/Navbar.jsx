@@ -15,7 +15,7 @@ const Navbar = () => {
     const [cartCount, setCartCount] = useState(0); 
 
     const { user, loading, handleLogout } = use(AuthContext);
-    const apiURL1 = "http://localhost:4000";
+    const apiURL1 = import.meta.env.VITE_SERVER_URL;
 
     // 🔄 ডাটাবেজ থেকে কার্ট আইটেম কাউন্ট নিয়ে আসার ফাংশন
     const fetchCartCount = () => {

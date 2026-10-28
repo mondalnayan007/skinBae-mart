@@ -6,7 +6,7 @@ const CategoryLayout = () => {
     const [products, setProducts] = useState([]);
     const [searchTerms, setSearchTerms] = useState('');
     const [loading, setLoading] = useState(false); 
-    const apiURL1= "http://localhost:4000";
+    
    const serverURL = import.meta.env.VITE_SERVER_URL;
     
     // URL থেকে category name নেওয়ার জন্য
